@@ -109,25 +109,25 @@
   /* Hero overline — sits above the logo as a frame/category label */
   .hero-overline {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 400;
-    font-size: 11px;
-    letter-spacing: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    color: var(--gold-deep);
+    color: var(--gold);
     margin-bottom: 48px;
     opacity: 0;
     animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-    display: flex; align-items: center; justify-content: center; gap: 18px;
+    display: flex; align-items: center; justify-content: center; gap: 22px;
   }
   .hero-overline::before,
   .hero-overline::after {
     content: '';
-    width: 40px;
+    width: 56px;
     height: 1px;
-    background: var(--gold-deep);
-    opacity: 0.6;
+    background: var(--gold);
+    opacity: 0.7;
   }
-  .hero-overline .dot { color: var(--gold-deep); opacity: 0.7; margin: 0 4px; }
+  .hero-overline .dot { color: var(--gold); opacity: 0.7; margin: 0 6px; }
 
   .logo-wrap {
     margin-bottom: 56px; opacity: 0;
@@ -138,12 +138,12 @@
   }
 
   .est-line {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 400;
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 80px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 500;
+    font-size: 16px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 80px;
     opacity: 0; animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
   }
-  .est-line .dot { display: inline-block; margin: 0 14px; color: var(--gold-deep); }
+  .est-line .dot { display: inline-block; margin: 0 18px; color: var(--gold); }
 
   /* STATS — now the visual anchor of the hero */
   .header-stats {
@@ -182,13 +182,13 @@
   }
   .stat-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    letter-spacing: 2.5px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 18px;
+    color: #d4cfc4;
+    margin-top: 26px;
     display: block;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   @keyframes fadeUp {
