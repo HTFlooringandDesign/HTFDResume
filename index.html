@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="High Tech Flooring & Design — Setting the standard for exceptional residential flooring in Texas since 1993. Serving Austin, Houston, and San Antonio.">
+<meta name="author" content="High Tech Flooring & Design">
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="High Tech Flooring & Design — Texas">
+<meta property="og:description" content="Setting the standard in residential flooring since 1993. Serving Austin, Houston & San Antonio.">
+<meta property="og:image" content="images/high-tech-flooring-amp-design-headquarters-austin-texas.jpg">
+<meta property="og:url" content="https://www.htflooringanddesign.com/">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="High Tech Flooring & Design — Texas">
+<meta name="twitter:description" content="Setting the standard in residential flooring since 1993.">
+<meta name="twitter:image" content="images/high-tech-flooring-amp-design-headquarters-austin-texas.jpg">
+
+<!-- Favicon (uses the logo PNG; recommend replacing with a proper favicon.ico later) -->
+<link rel="icon" type="image/png" href="images/high-tech-flooring-amp-design.png">
+
+
+<title>High Tech Flooring &amp; Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --obsidian: #0d0f0e;
+    --charcoal: #1a1d1b;
+    --slate: #2e3330;
+    --gold: #c8a96e;
+    --gold-light: #e2c98a;
+    --gold-pale: #f0e0b8;
+    --cream: #f5f0e8;
+    --white: #fdfcfa;
+    --muted: #8a9088;
+    --accent: #4a7c59;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; background: var(--obsidian); color: var(--cream); min-height: 100vh; overflow-x: hidden; }
+
+  /* HEADER */
+  header {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 80px 40px; overflow: hidden;
+  }
+  .header-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,169,110,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 0% 100%, rgba(74,124,89,0.08) 0%, transparent 60%),
+      linear-gradient(170deg, #0d0f0e 0%, #111614 40%, #0d0f0e 100%);
+  }
+  .grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,169,110,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridShift 20s linear infinite;
+  }
+  @keyframes gridShift { 0% { background-position: 0 0; } 100% { background-position: 60px 60px; } }
+
+  .corner-ornament { position: absolute; width: 120px; height: 120px; border-color: rgba(200,169,110,0.3); border-style: solid; }
+  .corner-ornament.tl { top: 30px; left: 30px; border-width: 1px 0 0 1px; }
+  .corner-ornament.tr { top: 30px; right: 30px; border-width: 1px 1px 0 0; }
+  .corner-ornament.bl { bottom: 30px; left: 30px; border-width: 0 0 1px 1px; }
+  .corner-ornament.br { bottom: 30px; right: 30px; border-width: 0 1px 1px 0; }
+
+  .header-content { position: relative; z-index: 2; max-width: 860px; }
+
+  .logo-wrap {
+    margin-bottom: 36px; opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .logo-wrap img {
+    height: 72px; width: auto;
+    
+  }
+
+  .est-line {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 300;
+    font-size: 11px; letter-spacing: 6px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.35s forwards;
+  }
+
+  .logo-divider {
+    display: flex; align-items: center; gap: 20px; margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+  .logo-divider::before, .logo-divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .logo-diamond { width: 10px; height: 10px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+  .header-stats {
+    display: flex; gap: 60px; justify-content: center; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards;
+  }
+  .stat { text-align: center; }
+  .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--gold); line-height: 1; display: block; }
+  .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 6px; display: block; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SECTIONS */
+  section { padding: 100px 40px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 14px;
+  }
+  .section-tag::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--gold); opacity: 0.5; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(32px, 4vw, 52px); line-height: 1.1; color: var(--white); margin-bottom: 40px; }
+  h2 em { font-style: italic; color: var(--gold-light); }
+
+  /* ABOUT */
+  .about-section { background: var(--charcoal); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-text p { font-size: 16px; line-height: 1.85; color: #b8c0b4; margin-bottom: 20px; font-weight: 300; }
+  .about-text p strong { color: var(--gold-light); font-weight: 500; }
+  .pillars { display: flex; flex-direction: column; gap: 28px; padding-top: 8px; }
+  .pillar { border-left: 2px solid var(--gold); padding: 0 0 0 24px; position: relative; }
+  .pillar::before { content: ''; position: absolute; left: -4px; top: 0; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+  .pillar-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; font-weight: 500; }
+  .pillar p { font-size: 14px; line-height: 1.7; color: var(--muted); font-weight: 300; }
+
+  /* MARKETS */
+  .markets-section { background: var(--obsidian); }
+  .markets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 8px; }
+  .market-card {
+    background: var(--charcoal); padding: 44px 36px; position: relative; overflow: hidden;
+    transition: background 0.3s ease;
+  }
+  .market-card:hover { background: var(--slate); }
+  .market-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0; transition: opacity 0.3s ease;
+  }
+  .market-card:hover::before { opacity: 1; }
+  .market-rule { width: 32px; height: 2px; background: var(--gold); margin-bottom: 20px; opacity: 0.6; }
+  .market-icon { width: 48px; height: 48px; margin-bottom: 22px; opacity: 0.85; }
+  .market-icon svg { width: 48px; height: 48px; stroke: var(--gold); fill: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+  .market-card:hover .market-icon svg { opacity: 1; }
+  .market-title { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 12px; }
+  .market-desc { font-size: 14px; line-height: 1.7; color: var(--muted); font-weight: 300; }
+
+  /* REGIONS */
+  .regions-section { background: var(--charcoal); }
+  .regions-row { display: flex; gap: 2px; margin-top: 8px; }
+  .region-card { flex: 1; padding: 60px 40px; background: var(--slate); position: relative; overflow: hidden; text-align: center; }
+  .region-card .region-num { font-family: 'Cormorant Garamond', serif; font-size: 100px; font-weight: 300; color: rgba(200,169,110,0.08); position: absolute; top: -10px; left: 50%; transform: translateX(-50%); line-height: 1; pointer-events: none; white-space: nowrap; }
+  .region-name { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); position: relative; z-index: 1; margin-bottom: 10px; }
+  .region-desc { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.6; position: relative; z-index: 1; }
+  .region-year { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: rgba(200,169,110,0.5); margin-top: 14px; display: block; position: relative; z-index: 1; }
+
+  /* SHOWROOM */
+  .showroom-section { background: var(--obsidian); padding: 0; }
+  .showroom-inner { max-width: 1100px; margin: 0 auto; padding: 100px 40px; }
+  .showroom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; align-items: stretch; margin-top: 8px; }
+  .showroom-photo {
+    position: relative; overflow: hidden; min-height: 420px;
+    background: var(--slate);
+  }
+  .showroom-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.85); }
+  .showroom-photo-placeholder {
+    width: 100%; height: 100%; min-height: 420px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--slate) 0%, #1e2520 100%);
+    gap: 16px;
+  }
+  .showroom-placeholder-icon {
+    width: 60px; height: 60px; border: 1px solid rgba(200,169,110,0.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .showroom-placeholder-icon svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1; }
+  .showroom-placeholder-text { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: rgba(200,169,110,0.4); }
+  .showroom-copy { background: var(--charcoal); padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
+  .showroom-copy p { font-size: 15px; line-height: 1.85; color: #b8c0b4; margin-bottom: 18px; font-weight: 300; }
+  .showroom-copy p strong { color: var(--gold-light); font-weight: 500; }
+  .showroom-features { margin-top: 30px; display: flex; flex-direction: column; gap: 14px; }
+  .showroom-feature { display: flex; align-items: flex-start; gap: 14px; }
+  .showroom-feature-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+  .showroom-feature span { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+  /* CLIENTS */
+  .clients-section { background: var(--charcoal); }
+  .clients-intro { font-size: 16px; line-height: 1.8; color: #b0b8ac; font-weight: 300; max-width: 620px; margin-bottom: 60px; }
+  .clients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px; }
+  .client-item {
+    background: var(--slate); padding: 22px 26px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1.5px;
+    color: #b0b8ac; text-transform: uppercase;
+    transition: all 0.25s ease; border-left: 2px solid transparent;
+    text-decoration: none; display: block;
+  }
+  .client-item:hover { color: var(--gold-light); border-left-color: var(--gold); background: var(--obsidian); }
+  .clients-more {
+    grid-column: 1 / -1; padding: 22px 26px; background: transparent;
+    border: 1px solid rgba(200,169,110,0.15);
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px;
+    color: rgba(200,169,110,0.5); text-align: center;
+  }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(160deg, var(--charcoal) 0%, #111614 100%); text-align: center; padding: 120px 40px; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(200,169,110,0.06) 0%, transparent 70%); }
+  .cta-section .section-inner { position: relative; z-index: 1; }
+  .cta-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 50px); font-weight: 300; line-height: 1.2; color: var(--white); margin-bottom: 20px; }
+  .cta-tagline em { font-style: italic; color: var(--gold-light); }
+  .cta-sub { font-size: 15px; color: var(--muted); font-weight: 300; margin-bottom: 50px; line-height: 1.7; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .cta-divider { width: 1px; height: 60px; background: linear-gradient(var(--gold), transparent); margin: 0 auto 40px; }
+  .contact-block { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
+  .contact-item { text-align: center; }
+  .contact-label { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px; }
+  .contact-value { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--white); text-decoration: none; }
+  .contact-value:hover { color: var(--gold-light); }
+
+  /* FOOTER */
+  footer { background: var(--obsidian); border-top: 1px solid rgba(200,169,110,0.1); padding: 28px 40px; text-align: center; }
+  footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(138,144,136,0.5); }
+  footer span { color: rgba(200,169,110,0.4); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    section { padding: 70px 24px; }
+    .about-grid, .showroom-grid { grid-template-columns: 1fr; gap: 0; }
+    .markets-grid { grid-template-columns: 1fr; }
+    .regions-row { flex-direction: column; }
+    .header-stats { gap: 36px; }
+    .contact-block { gap: 40px; }
+    .corner-ornament { width: 70px; height: 70px; }
+    .corner-ornament.tl { top: 16px; left: 16px; }
+    .corner-ornament.tr { top: 16px; right: 16px; }
+    .corner-ornament.bl { bottom: 16px; left: 16px; }
+    .corner-ornament.br { bottom: 16px; right: 16px; }
+    .showroom-copy { padding: 50px 30px; }
+  }
+
+  /* PHOTO GALLERY */
+  .gallery-section { background: var(--obsidian); padding: 0 0 100px 0; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 320px 320px;
+    gap: 3px;
+  }
+  .gallery-item { overflow: hidden; position: relative; }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(13,15,14,0.85));
+    padding: 30px 24px 18px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(200,169,110,0.8);
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .gallery-item:hover .gallery-caption { opacity: 1; }
+
+  /* EXTERIOR SECTION */
+  .exterior-section { background: var(--charcoal); padding: 100px 40px; }
+  .exterior-wrap { max-width: 1100px; margin: 0 auto; }
+  .exterior-img-wrap { position: relative; overflow: hidden; margin-top: 8px; }
+  .exterior-img-wrap img { width: 100%; display: block; max-height: 560px; object-fit: cover; object-position: center 30%; }
+  .exterior-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(13,15,14,0.6));
+    padding: 60px 40px 30px;
+  }
+  .exterior-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold-light);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header>
+  <div class="header-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="corner-ornament tl"></div>
+  <div class="corner-ornament tr"></div>
+  <div class="corner-ornament bl"></div>
+  <div class="corner-ornament br"></div>
+
+  <div class="header-content">
+    <div class="logo-wrap">
+      <img src="images/high-tech-flooring-amp-design.png" alt="High Tech Flooring &amp; Design" loading="lazy">
+    </div>
+    <div class="est-line">Established 1993 &nbsp;·&nbsp; Austin, Texas</div>
+    <div class="logo-divider"><div class="logo-diamond"></div></div>
+    <div class="header-stats">
+      <div class="stat">
+        <span class="stat-number">30+</span>
+        <span class="stat-label">Years of Excellence</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Major Markets</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">25+</span>
+        <span class="stat-label">Builder Partners</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-tag">Who We Are</div>
+        <h2>Three Decades of<br><em>Craftsmanship &amp; Trust</em></h2>
+        <p>Founded in <strong>Austin, Texas in 1993</strong>, High Tech Flooring &amp; Design has grown from a local flooring specialist into one of the most trusted full-service flooring partners in the Texas market.</p>
+        <p>Over three decades, we have cultivated deep relationships with the state's most respected homebuilders and commercial developers — built on a foundation of <strong>quality, reliability, and design expertise</strong> that our partners have come to depend on.</p>
+        <p>From the design center to the final installation, our team delivers a <strong>seamless, white-glove experience</strong> that protects our builder partners' timelines, budgets, and reputations.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-title">Design Excellence</div>
+          <p>Our design professionals help builders and homeowners navigate thousands of flooring options with confidence — from luxury vinyl plank to hardwood, tile, carpet, and beyond.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Unmatched Schedule Discipline</div>
+          <p>We actively track the production schedule of every single home in our pipeline — monitoring starts, stages, and milestones so materials arrive in our warehouse precisely when needed. No waiting. No delays. No surprises. It's a level of proactive coordination that sets us apart as a trade partner.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Scalable Capacity</div>
+          <p>From a single custom home to a 500-unit community, our infrastructure scales to meet demand across every segment we serve.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Trusted Partnership</div>
+          <p>Relationships are the cornerstone of our business. Our clients don't just use us — they grow with us, decade after decade.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS SERVED -->
+<section class="markets-section">
+  <div class="section-inner">
+    <div class="section-tag">Our Expertise</div>
+    <h2>Markets We <em>Serve</em></h2>
+    <div class="markets-grid">
+      <div class="market-card">
+        <div class="market-icon">
+          <!-- Production: row of identical houses -->
+          <svg viewBox="0 0 48 48">
+            <polyline points="4,22 10,14 16,22"/><rect x="6" y="22" width="8" height="10"/><line x1="10" y1="28" x2="10" y2="32"/>
+            <polyline points="16,22 22,14 28,22"/><rect x="18" y="22" width="8" height="10"/>
+            <polyline points="28,22 34,14 40,22"/><rect x="30" y="22" width="8" height="10"/>
+            <line x1="2" y1="32" x2="46" y2="32"/>
+          </svg>
+        </div>
+        <div class="market-title">Production Builders</div>
+        <p class="market-desc">High-volume residential communities demand precision, consistency, and speed. We deliver all three — on every home, every time — backed by real-time schedule tracking across our entire builder portfolio.</p>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">
+          <!-- Build-to-Rent: repeating units / townhome row -->
+          <svg viewBox="0 0 48 48">
+            <rect x="3" y="20" width="10" height="14"/><polyline points="3,20 8,12 13,20"/>
+            <rect x="13" y="20" width="10" height="14"/><polyline points="13,20 18,12 23,20"/>
+            <rect x="23" y="20" width="10" height="14"/><polyline points="23,20 28,12 33,20"/>
+            <rect x="33" y="20" width="10" height="14"/><polyline points="33,20 38,12 43,20"/>
+            <line x1="1" y1="34" x2="47" y2="34"/>
+            <rect x="6" y="26" width="4" height="8"/><rect x="16" y="26" width="4" height="8"/><rect x="26" y="26" width="4" height="8"/><rect x="36" y="26" width="4" height="8"/>
+          </svg>
+        </div>
+        <div class="market-title">Build-to-Rent</div>
+        <p class="market-desc">The fastest-growing segment in housing. We partner with BTR developers who need durable, design-forward flooring solutions delivered consistently and at scale across entire communities.</p>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">
+          <!-- Multi-family: apartment block with stacked floors -->
+          <svg viewBox="0 0 48 48">
+            <rect x="8" y="10" width="32" height="28"/>
+            <line x1="8" y1="20" x2="40" y2="20"/>
+            <line x1="8" y1="29" x2="40" y2="29"/>
+            <line x1="24" y1="10" x2="24" y2="38"/>
+            <rect x="12" y="13" width="5" height="5"/><rect x="19" y="13" width="5" height="5"/><rect x="26" y="13" width="5" height="5"/><rect x="33" y="13" width="5" height="5"/>
+            <rect x="12" y="22" width="5" height="5"/><rect x="19" y="22" width="5" height="5"/><rect x="26" y="22" width="5" height="5"/><rect x="33" y="22" width="5" height="5"/>
+            <rect x="19" y="31" width="10" height="7"/>
+            <line x1="4" y1="38" x2="44" y2="38"/>
+          </svg>
+        </div>
+        <div class="market-title">Multi-Family</div>
+        <p class="market-desc">Apartment communities, condominiums, and mixed-use developments — we manage complex, multi-unit flooring programs with the same rigor and care we bring to every single-family project.</p>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">
+          <!-- Custom: single architectural home with detail -->
+          <svg viewBox="0 0 48 48">
+            <polyline points="4,26 24,8 44,26"/>
+            <rect x="10" y="26" width="28" height="16"/>
+            <rect x="20" y="32" width="8" height="10"/>
+            <rect x="13" y="29" width="6" height="6"/><rect x="29" y="29" width="6" height="6"/>
+            <line x1="24" y1="8" x2="24" y2="14"/>
+            <line x1="4" y1="42" x2="44" y2="42"/>
+          </svg>
+        </div>
+        <div class="market-title">Custom Builders</div>
+        <p class="market-desc">Bespoke projects require elevated design sensibility and meticulous attention to detail. Our team rises to every unique challenge, bringing the best materials and craftsmanship to every spec.</p>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">
+          <!-- Commercial: office tower with grid facade -->
+          <svg viewBox="0 0 48 48">
+            <rect x="12" y="6" width="24" height="36"/>
+            <line x1="12" y1="14" x2="36" y2="14"/>
+            <line x1="12" y1="22" x2="36" y2="22"/>
+            <line x1="12" y1="30" x2="36" y2="30"/>
+            <line x1="20" y1="6" x2="20" y2="42"/>
+            <line x1="28" y1="6" x2="28" y2="42"/>
+            <rect x="8" y="38" width="32" height="4"/>
+            <line x1="4" y1="42" x2="44" y2="42"/>
+          </svg>
+        </div>
+        <div class="market-title">Commercial</div>
+        <p class="market-desc">From retail environments to office spaces, we bring the same commitment to quality and schedule adherence to commercial projects of all scopes and sizes.</p>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">
+          <!-- General Contractors: blueprint / drafting compass + ruler -->
+          <svg viewBox="0 0 48 48">
+            <rect x="6" y="8" width="36" height="32" rx="1"/>
+            <line x1="6" y1="15" x2="42" y2="15"/>
+            <line x1="6" y1="22" x2="42" y2="22"/>
+            <line x1="6" y1="29" x2="42" y2="29"/>
+            <line x1="13" y1="8" x2="13" y2="40"/>
+            <line x1="20" y1="8" x2="20" y2="40"/>
+            <line x1="27" y1="8" x2="27" y2="40"/>
+            <line x1="34" y1="8" x2="34" y2="40"/>
+            <polyline points="16,18 22,26 28,20 34,28" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="market-title">General Contractors</div>
+        <p class="market-desc">General contractors and design-build firms rely on High Tech Flooring &amp; Design when quality of execution is non-negotiable and the job requires a true flooring partner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGIONAL PRESENCE -->
+<section class="regions-section">
+  <div class="section-inner">
+    <div class="section-tag">Where We Operate</div>
+    <h2>Texas-Wide <em>Reach</em></h2>
+    <div class="regions-row">
+      <div class="region-card">
+        <span class="region-num">01</span>
+        <div class="region-name">Austin</div>
+        <p class="region-desc">Our home market and headquarters. Three decades of deep relationships across Central Texas.</p>
+        <span class="region-year">Est. 1993 — Home Market</span>
+      </div>
+      <div class="region-card">
+        <span class="region-num">02</span>
+        <div class="region-name">Houston</div>
+        <p class="region-desc">Serving the Greater Houston area's robust residential and commercial building market.</p>
+        <span class="region-year">Expanded Coverage</span>
+      </div>
+      <div class="region-card">
+        <span class="region-num">03</span>
+        <div class="region-name">San Antonio</div>
+        <p class="region-desc">Full-service capabilities across the Alamo City and surrounding Hill Country communities.</p>
+        <span class="region-year">Expanded Coverage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN CENTER / SHOWROOM -->
+<section class="showroom-section">
+  <div class="showroom-inner">
+    <div class="section-tag">Our Design Center</div>
+    <h2>Where Vision Becomes <em>Reality</em></h2>
+    <div class="showroom-grid">
+      <div class="showroom-photo">
+        <img src="images/high-tech-flooring-design-center.jpg" alt="High Tech Flooring Design Center" loading="lazy">
+      </div>
+      <div class="showroom-copy">
+        <p>Our <strong>state-of-the-art design center</strong> is where builder partners and their homebuyers go from overwhelmed to inspired. Curated to showcase the finest flooring available — from wide-plank hardwoods and imported tile to luxury vinyl and premium carpet — every product on display has been hand-selected for quality, value, and enduring style.</p>
+        <p>Our <strong>experienced design consultants</strong> guide every client through the selection process with confidence, ensuring that each choice reflects the buyer's lifestyle, the builder's brand, and the project's budget.</p>
+        <div class="showroom-features">
+          <div class="showroom-feature"><div class="showroom-feature-dot"></div><span>Hundreds of curated samples across every product category</span></div>
+          <div class="showroom-feature"><div class="showroom-feature-dot"></div><span>Dedicated design consultants with deep product knowledge</span></div>
+          <div class="showroom-feature"><div class="showroom-feature-dot"></div><span>Streamlined selections process built for builder timelines</span></div>
+          <div class="showroom-feature"><div class="showroom-feature-dot"></div><span>Full-service coordination from specification through installation</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-grid">
+    <div class="gallery-item wide">
+      <img src="images/high-tech-flooring-lobby.jpg" alt="High Tech Flooring Lobby" loading="lazy">
+      <div class="gallery-caption">Reception &amp; Lobby</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/high-tech-flooring-boardroom.jpg" alt="High Tech Flooring Boardroom" loading="lazy">
+      <div class="gallery-caption">Boardroom</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/high-tech-flooring-design-center.jpg" alt="Design Center Floor" loading="lazy">
+      <div class="gallery-caption">Design Center</div>
+    </div>
+    <div class="gallery-item wide">
+      <img src="images/high-tech-flooring-lobby.jpg" alt="Design Center Lobby" loading="lazy">
+      <div class="gallery-caption">Design Center Entrance</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTERIOR / FACILITY -->
+<section class="exterior-section">
+  <div class="exterior-wrap">
+    <div class="section-tag">Our Facility</div>
+    <h2>Built for <em>Scale &amp; Service</em></h2>
+    <div class="exterior-img-wrap">
+      <img src="images/high-tech-flooring-amp-design-headquarters-austin-texas.jpg" alt="High Tech Flooring &amp; Design Headquarters Austin Texas" loading="lazy">
+      <div class="exterior-overlay">
+        <div class="exterior-label">High Tech Flooring &amp; Design — Austin, Texas Headquarters</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients-section">
+  <div class="section-inner">
+    <div class="section-tag">Our Partners</div>
+    <h2>Trusted by Texas's <em>Best Builders</em></h2>
+    <p class="clients-intro">High Tech Flooring &amp; Design is proud to serve an exceptional collection of Texas's most respected homebuilders and developers — relationships built on performance, trust, and a shared commitment to excellence.</p>
+    <div class="clients-grid">
+      <a class="client-item" href="https://www.brookfieldresidential.com" target="_blank" rel="noopener">Brookfield Residential</a>
+      <a class="client-item" href="https://www.newmarkhomes.com" target="_blank" rel="noopener">Newmark Homes</a>
+      <a class="client-item" href="https://www.tollbrothers.com" target="_blank" rel="noopener">Toll Brothers Homes</a>
+      <a class="client-item" href="https://www.chesmarhomes.com" target="_blank" rel="noopener">Chesmar Homes</a>
+      <a class="client-item" href="https://www.davidweekley.com" target="_blank" rel="noopener">David Weekley Homes</a>
+      <a class="client-item" href="https://www.pulte.com" target="_blank" rel="noopener">Pulte Homes</a>
+      <a class="client-item" href="https://www.drhorton.com" target="_blank" rel="noopener">DR Horton Homes</a>
+      <a class="client-item" href="https://www.ahvcommunities.com" target="_blank" rel="noopener">AHV Communities</a>
+      <a class="client-item" href="https://www.pacesetterhomes.com" target="_blank" rel="noopener">Pacesetter Homes</a>
+      <a class="client-item" href="https://www.risewellhomes.com" target="_blank" rel="noopener">Risewell Homes</a>
+      <a class="client-item" href="https://www.ashtonwoods.com" target="_blank" rel="noopener">Ashton Woods</a>
+      <a class="client-item" href="https://www.mihomes.com" target="_blank" rel="noopener">M/I Homes</a>
+      <a class="client-item" href="https://www.sitterlehomes.com" target="_blank" rel="noopener">Sitterle Homes</a>
+      <a class="client-item" href="https://www.casadomaine.com" target="_blank" rel="noopener">Casadomaine Custom Homes</a>
+      <a class="client-item" href="https://www.evolutionaryhomes.com" target="_blank" rel="noopener">Evolutionary Homes</a>
+      <a class="client-item" href="https://www.viewhomes.com" target="_blank" rel="noopener">View Homes</a>
+      <a class="client-item" href="https://www.brohnhomes.com" target="_blank" rel="noopener">Brohn Homes</a>
+      <a class="client-item" href="https://www.sterlingcustomhomes.com" target="_blank" rel="noopener">Sterling Custom Homes</a>
+      <a class="client-item" href="https://www.legacydesigncs.com" target="_blank" rel="noopener">Legacy Design Construction</a>
+      <a class="client-item" href="https://www.flintco.com" target="_blank" rel="noopener">Flintco</a>
+      <a class="client-item" href="https://www.enterrahomes.com" target="_blank" rel="noopener">Enterra Homes</a>
+      <a class="client-item" href="https://www.silveradosignaturehomes.com" target="_blank" rel="noopener">Silverado Signature Homes</a>
+      <a class="client-item" href="https://www.oakmonthomes.com" target="_blank" rel="noopener">Oakmont Homes</a>
+      <a class="client-item" href="https://www.schwartzcustomhomes.com" target="_blank" rel="noopener">Schwartz Custom Homes</a>
+      <a class="client-item" href="https://www.maverickcustomhomes.com" target="_blank" rel="noopener">Maverick Custom Homes</a>
+      <div class="clients-more">...and many more valued partners across Texas</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-inner">
+    <div class="cta-tagline">Ready to Elevate Your Next<br><em>Project?</em></div>
+    <p class="cta-sub">Partner with a flooring company that has been setting the standard in Texas for over 30 years. Let's build something exceptional together.</p>
+    <div class="cta-divider"></div>
+    <div class="contact-block">
+      <div class="contact-item">
+        <span class="contact-label">Headquarters</span>
+        <span class="contact-value">Austin, Texas</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Markets Served</span>
+        <span class="contact-value">Austin · Houston · San Antonio</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Founded</span>
+        <span class="contact-value">1993</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Website</span>
+        <a class="contact-value" href="https://www.htflooringanddesign.com" target="_blank" rel="noopener">htflooringanddesign.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 High Tech Flooring &amp; Design <span>·</span> Austin, Texas <span>·</span> Serving Texas Since 1993 <span>·</span> <a href="https://www.htflooringanddesign.com" target="_blank" rel="noopener" style="color:rgba(200,169,110,0.5);text-decoration:none;letter-spacing:3px;">htflooringanddesign.com</a></p>
+</footer>
+
+</body>
+</html>
