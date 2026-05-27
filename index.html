@@ -30,9 +30,11 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     /* Warmer, deeper obsidian — less "digital black", more "library at midnight" */
-    --obsidian: #14110e;
-    --charcoal: #1c1916;
-    --slate: #2a2520;
+    /* Pure black base so the logo's black rectangle blends invisibly.
+       Card surfaces stay slightly raised so they remain visible on top. */
+    --obsidian: #000000;
+    --charcoal: #0d0c0b;
+    --slate: #181614;
     /* Richer, more saturated bronze-gold */
     --gold: #b8956a;
     --gold-light: #d4b78a;
@@ -99,9 +101,7 @@
   }
   .header-bg {
     position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 35%, rgba(184,149,106,0.07) 0%, transparent 65%),
-      linear-gradient(180deg, #14110e 0%, #18130f 50%, #14110e 100%);
+    background: #000000;
   }
 
   .header-content { position: relative; z-index: 2; max-width: 1000px; width: 100%; }
@@ -451,7 +451,7 @@
     position: relative;
   }
   .client-item:hover {
-    background: #18130f;  /* subtle warm lift */
+    background: #0d0c0b;  /* subtle lift */
   }
   /* The primary name — the brand mark */
   .client-name {
@@ -509,7 +509,7 @@
 
   /* =========================== CTA =========================== */
   .cta-section {
-    background: linear-gradient(180deg, var(--obsidian) 0%, #18130f 100%);
+    background: linear-gradient(180deg, var(--obsidian) 0%, #050403 100%);
     text-align: center; padding: 150px 40px;
     position: relative; overflow: hidden;
   }
