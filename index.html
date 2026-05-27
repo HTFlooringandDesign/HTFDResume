@@ -23,25 +23,75 @@
 
 
 <title>High Tech Flooring &amp; Design</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --obsidian: #0d0f0e;
-    --charcoal: #1a1d1b;
-    --slate: #2e3330;
-    --gold: #c8a96e;
-    --gold-light: #e2c98a;
-    --gold-pale: #f0e0b8;
-    --cream: #f5f0e8;
-    --white: #fdfcfa;
-    --muted: #8a9088;
-    --accent: #4a7c59;
+    /* Warmer, deeper obsidian — less "digital black", more "library at midnight" */
+    --obsidian: #14110e;
+    --charcoal: #1c1916;
+    --slate: #2a2520;
+    /* Richer, more saturated bronze-gold */
+    --gold: #b8956a;
+    --gold-light: #d4b78a;
+    --gold-deep: #8a6f4f;
+    --cream: #f0eae0;
+    --white: #faf7f2;
+    --muted: #8a8278;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Barlow', sans-serif; background: var(--obsidian); color: var(--cream); min-height: 100vh; overflow-x: hidden; }
+  body {
+    font-family: 'Playfair Display', Georgia, serif;
+    background: var(--obsidian);
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "liga" 1, "onum" 1;  /* onum = oldstyle numerals in body */
+  }
 
-  /* HEADER */
+  /* Scroll progress bar — hairline gold rule that fills as user scrolls */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+    z-index: 9999;
+    transition: width 0.05s linear;
+    pointer-events: none;
+  }
+
+  /* Display elements that need crisp lining figures override the body default */
+  .stat-number,
+  .region-num,
+  .hero-overline,
+  .est-line,
+  h2,
+  .section-tag,
+  .pillar-title,
+  .market-title,
+  .region-year,
+  .contact-label,
+  .exterior-label,
+  .gallery-caption,
+  .client-item,
+  footer p { font-feature-settings: "kern" 1, "liga" 1, "lnum" 1; }
+
+  /* Subtle grain overlay — adds analog warmth without animated noise */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.7'/></svg>");
+  }
+
+  /* =========================== HEADER =========================== */
   header {
     position: relative; min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -50,260 +100,575 @@
   .header-bg {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,169,110,0.12) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 80% at 0% 100%, rgba(74,124,89,0.08) 0%, transparent 60%),
-      linear-gradient(170deg, #0d0f0e 0%, #111614 40%, #0d0f0e 100%);
+      radial-gradient(ellipse 60% 50% at 50% 35%, rgba(184,149,106,0.07) 0%, transparent 65%),
+      linear-gradient(180deg, #14110e 0%, #18130f 50%, #14110e 100%);
   }
-  .grid-overlay {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,169,110,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    animation: gridShift 20s linear infinite;
+
+  .header-content { position: relative; z-index: 2; max-width: 1000px; width: 100%; }
+
+  /* Hero overline — sits above the logo as a frame/category label */
+  .hero-overline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    display: flex; align-items: center; justify-content: center; gap: 18px;
   }
-  @keyframes gridShift { 0% { background-position: 0 0; } 100% { background-position: 60px 60px; } }
-
-  .corner-ornament { position: absolute; width: 120px; height: 120px; border-color: rgba(200,169,110,0.3); border-style: solid; }
-  .corner-ornament.tl { top: 30px; left: 30px; border-width: 1px 0 0 1px; }
-  .corner-ornament.tr { top: 30px; right: 30px; border-width: 1px 1px 0 0; }
-  .corner-ornament.bl { bottom: 30px; left: 30px; border-width: 0 0 1px 1px; }
-  .corner-ornament.br { bottom: 30px; right: 30px; border-width: 0 1px 1px 0; }
-
-  .header-content { position: relative; z-index: 2; max-width: 860px; }
+  .hero-overline::before,
+  .hero-overline::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold-deep);
+    opacity: 0.6;
+  }
+  .hero-overline .dot { color: var(--gold-deep); opacity: 0.7; margin: 0 4px; }
 
   .logo-wrap {
-    margin-bottom: 36px; opacity: 0;
-    animation: fadeUp 0.8s ease 0.2s forwards;
+    margin-bottom: 56px; opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
   }
   .logo-wrap img {
-    height: 72px; width: auto;
-    
+    height: 88px; width: auto;
   }
 
   .est-line {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 300;
-    font-size: 11px; letter-spacing: 6px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 28px;
-    opacity: 0; animation: fadeUp 0.8s ease 0.35s forwards;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 400;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 80px;
+    opacity: 0; animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
   }
+  .est-line .dot { display: inline-block; margin: 0 14px; color: var(--gold-deep); }
 
-  .logo-divider {
-    display: flex; align-items: center; gap: 20px; margin-bottom: 24px;
-    opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
-  }
-  .logo-divider::before, .logo-divider::after {
-    content: ''; flex: 1; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-  .logo-diamond { width: 10px; height: 10px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
-
+  /* STATS — now the visual anchor of the hero */
   .header-stats {
-    display: flex; gap: 60px; justify-content: center; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    max-width: 880px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+    position: relative;
   }
-  .stat { text-align: center; }
-  .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--gold); line-height: 1; display: block; }
-  .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 6px; display: block; }
+  /* Hairline dividers between stats — more refined than gaps */
+  .header-stats::before,
+  .header-stats::after {
+    content: '';
+    position: absolute;
+    top: 18%;
+    bottom: 18%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(184,149,106,0.25), transparent);
+  }
+  .header-stats::before { left: 33.333%; }
+  .header-stats::after { left: 66.666%; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .stat { text-align: center; padding: 0 20px; }
+  .stat-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(72px, 11vw, 132px);
+    font-weight: 400;
+    color: var(--gold-light);
+    line-height: 0.95;
+    display: block;
+    letter-spacing: -0.02em;
+    font-feature-settings: "lnum" 1;  /* lining figures for stats */
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 18px;
+    display: block;
+    font-weight: 400;
+  }
 
-  /* SECTIONS */
-  section { padding: 100px 40px; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* =========================== SECTIONS =========================== */
+  body { counter-reset: section-num; }
+  section { padding: 130px 40px; position: relative; }
+  .section-inner { max-width: 1180px; margin: 0 auto; }
+
+  /* Ornamental section divider — a Roman numeral centered between
+     two extended hairline rules. Replaces hard panel transitions. */
+  section:not(.cta-section):not(.gallery-section):not(.showroom-section)::before,
+  .showroom-section::before,
+  .gallery-section::before {
+    counter-increment: section-num;
+    content: counter(section-num, upper-roman);
+    position: absolute;
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    letter-spacing: 6px;
+    color: rgba(184,149,106,0.55);
+    font-feature-settings: "lnum" 1;
+    z-index: 2;
+    white-space: nowrap;
+    /* Flanking hairlines via box-shadow on pseudo-element doesn't work,
+       so we'll use a different approach below */
+    padding: 0 20px;
+  }
+  /* The hairlines flanking the numeral, drawn as a wide centered horizontal
+     rule sitting BEHIND the numeral text. The padding above masks the rule
+     under the numeral itself. */
+  section:not(.cta-section):not(.gallery-section):not(.showroom-section)::after,
+  .showroom-section::after,
+  .gallery-section::after {
+    content: '';
+    position: absolute;
+    top: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(184,149,106,0.35) 30%, rgba(184,149,106,0.35) 70%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* Mask the part of the line under the numeral by giving the numeral
+     a background matching the body color. */
+  section:not(.cta-section):not(.gallery-section):not(.showroom-section)::before,
+  .showroom-section::before,
+  .gallery-section::before {
+    background: var(--obsidian);
+  }
+
+  /* Sections with padding:0 need the ornament positioned relative to their
+     content boundary instead of the top of the section box. */
+  .showroom-section { position: relative; }
+  .gallery-section { position: relative; }
+
   .section-tag {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 18px;
+    font-weight: 400;
   }
-  .section-tag::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--gold); opacity: 0.5; }
-  h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(32px, 4vw, 52px); line-height: 1.1; color: var(--white); margin-bottom: 40px; }
-  h2 em { font-style: italic; color: var(--gold-light); }
+  .section-tag::after {
+    content: '';
+    flex: 0 0 48px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
 
-  /* ABOUT */
-  .about-section { background: var(--charcoal); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .about-text p { font-size: 16px; line-height: 1.85; color: #b8c0b4; margin-bottom: 20px; font-weight: 300; }
-  .about-text p strong { color: var(--gold-light); font-weight: 500; }
-  .pillars { display: flex; flex-direction: column; gap: 28px; padding-top: 8px; }
-  .pillar { border-left: 2px solid var(--gold); padding: 0 0 0 24px; position: relative; }
-  .pillar::before { content: ''; position: absolute; left: -4px; top: 0; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
-  .pillar-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; font-weight: 500; }
-  .pillar p { font-size: 14px; line-height: 1.7; color: var(--muted); font-weight: 300; }
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(34px, 4.2vw, 56px);
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 48px;
+    letter-spacing: -0.01em;
+  }
+  h2 em { font-style: italic; font-weight: 500; color: var(--gold-light); }
 
-  /* MARKETS */
+  /* =========================== ABOUT =========================== */
+  .about-section { background: var(--obsidian); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+  .about-text p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px; line-height: 1.75;
+    color: #c8c0b4;
+    margin-bottom: 22px;
+    font-weight: 400;
+  }
+  .about-text p strong { color: var(--gold-light); font-weight: 500; font-style: italic; }
+  .pillars { display: flex; flex-direction: column; gap: 36px; padding-top: 12px; }
+  .pillar { border-left: 1px solid var(--gold); padding: 4px 0 4px 28px; position: relative; }
+  .pillar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px; font-weight: 500;
+  }
+  .pillar p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 15px; line-height: 1.7;
+    color: var(--muted); font-weight: 400;
+  }
+
+  /* =========================== MARKETS =========================== */
   .markets-section { background: var(--obsidian); }
-  .markets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 8px; }
+  .markets-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    margin-top: 16px;
+    background: rgba(184,149,106,0.12);  /* the gap color becomes a hairline */
+    border: 1px solid rgba(184,149,106,0.12);
+  }
   .market-card {
-    background: var(--charcoal); padding: 44px 36px; position: relative; overflow: hidden;
-    transition: background 0.3s ease;
+    background: var(--charcoal); padding: 52px 40px; position: relative;
+    transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .market-card:hover { background: var(--slate); }
-  .market-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0; transition: opacity 0.3s ease;
+  .market-rule {
+    width: 28px; height: 1px;
+    background: var(--gold); margin-bottom: 28px; opacity: 0.7;
   }
-  .market-card:hover::before { opacity: 1; }
-  .market-rule { width: 32px; height: 2px; background: var(--gold); margin-bottom: 20px; opacity: 0.6; }
-  .market-icon { width: 48px; height: 48px; margin-bottom: 22px; opacity: 0.85; }
-  .market-icon svg { width: 48px; height: 48px; stroke: var(--gold); fill: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
-  .market-card:hover .market-icon svg { opacity: 1; }
-  .market-title { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 12px; }
-  .market-desc { font-size: 14px; line-height: 1.7; color: var(--muted); font-weight: 300; }
+  .market-icon { width: 44px; height: 44px; margin-bottom: 26px; }
+  .market-icon svg { width: 44px; height: 44px; stroke: var(--gold); fill: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+  .market-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px; font-weight: 500;
+    color: var(--white); margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .market-desc {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14px; line-height: 1.75;
+    color: var(--muted); font-weight: 400;
+  }
 
-  /* REGIONS */
-  .regions-section { background: var(--charcoal); }
-  .regions-row { display: flex; gap: 2px; margin-top: 8px; }
-  .region-card { flex: 1; padding: 60px 40px; background: var(--slate); position: relative; overflow: hidden; text-align: center; }
-  .region-card .region-num { font-family: 'Cormorant Garamond', serif; font-size: 100px; font-weight: 300; color: rgba(200,169,110,0.08); position: absolute; top: -10px; left: 50%; transform: translateX(-50%); line-height: 1; pointer-events: none; white-space: nowrap; }
-  .region-name { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); position: relative; z-index: 1; margin-bottom: 10px; }
-  .region-desc { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.6; position: relative; z-index: 1; }
-  .region-year { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: rgba(200,169,110,0.5); margin-top: 14px; display: block; position: relative; z-index: 1; }
+  /* =========================== REGIONS =========================== */
+  .regions-section { background: var(--obsidian); }
+  .regions-row {
+    display: flex; gap: 1px; margin-top: 16px;
+    background: rgba(184,149,106,0.12);
+    border: 1px solid rgba(184,149,106,0.12);
+  }
+  .region-card {
+    flex: 1; padding: 70px 40px; background: var(--slate);
+    position: relative; overflow: hidden; text-align: center;
+  }
+  .region-card .region-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 140px; font-weight: 400; font-style: italic;
+    color: rgba(184,149,106,0.06);
+    position: absolute; top: -20px; left: 50%;
+    transform: translateX(-50%); line-height: 1;
+    pointer-events: none; white-space: nowrap;
+  }
+  .region-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px; font-weight: 500;
+    color: var(--gold-light); position: relative; z-index: 1;
+    margin-bottom: 14px; letter-spacing: -0.01em;
+  }
+  .region-desc {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14px; color: var(--muted); font-weight: 400;
+    line-height: 1.7; position: relative; z-index: 1;
+  }
+  .region-year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: rgba(184,149,106,0.5);
+    margin-top: 18px; display: block; position: relative; z-index: 1;
+  }
 
-  /* SHOWROOM */
+  /* =========================== SHOWROOM =========================== */
   .showroom-section { background: var(--obsidian); padding: 0; }
-  .showroom-inner { max-width: 1100px; margin: 0 auto; padding: 100px 40px; }
-  .showroom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; align-items: stretch; margin-top: 8px; }
+  .showroom-inner { max-width: 1180px; margin: 0 auto; padding: 130px 40px; }
+  .showroom-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    margin-top: 16px;
+    background: rgba(184,149,106,0.12);
+    border: 1px solid rgba(184,149,106,0.12);
+    align-items: stretch;
+  }
   .showroom-photo {
-    position: relative; overflow: hidden; min-height: 420px;
+    position: relative; overflow: hidden; min-height: 460px;
     background: var(--slate);
   }
-  .showroom-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.85); }
-  .showroom-photo-placeholder {
-    width: 100%; height: 100%; min-height: 420px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--slate) 0%, #1e2520 100%);
-    gap: 16px;
+  .showroom-photo img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: brightness(0.85) saturate(0.92);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .showroom-placeholder-icon {
-    width: 60px; height: 60px; border: 1px solid rgba(200,169,110,0.3);
-    display: flex; align-items: center; justify-content: center;
+  .showroom-photo:hover img { transform: scale(1.03); }
+  .showroom-copy {
+    background: var(--charcoal); padding: 70px 56px;
+    display: flex; flex-direction: column; justify-content: center;
   }
-  .showroom-placeholder-icon svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1; }
-  .showroom-placeholder-text { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: rgba(200,169,110,0.4); }
-  .showroom-copy { background: var(--charcoal); padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
-  .showroom-copy p { font-size: 15px; line-height: 1.85; color: #b8c0b4; margin-bottom: 18px; font-weight: 300; }
-  .showroom-copy p strong { color: var(--gold-light); font-weight: 500; }
-  .showroom-features { margin-top: 30px; display: flex; flex-direction: column; gap: 14px; }
-  .showroom-feature { display: flex; align-items: flex-start; gap: 14px; }
-  .showroom-feature-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
-  .showroom-feature span { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+  .showroom-copy p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 16px; line-height: 1.8;
+    color: #c8c0b4; margin-bottom: 20px; font-weight: 400;
+  }
+  .showroom-copy p strong {
+    color: var(--gold-light); font-weight: 500; font-style: italic;
+  }
+  .showroom-features { margin-top: 36px; display: flex; flex-direction: column; gap: 16px; }
+  .showroom-feature { display: flex; align-items: flex-start; gap: 16px; }
+  .showroom-feature-dot {
+    width: 4px; height: 4px; background: var(--gold);
+    border-radius: 50%; flex-shrink: 0; margin-top: 8px;
+  }
+  .showroom-feature span {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14px; color: var(--muted); font-weight: 400;
+    line-height: 1.6;
+  }
 
-  /* CLIENTS */
-  .clients-section { background: var(--charcoal); }
-  .clients-intro { font-size: 16px; line-height: 1.8; color: #b0b8ac; font-weight: 300; max-width: 620px; margin-bottom: 60px; }
-  .clients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px; }
+  /* =========================== CLIENTS =========================== */
+  .clients-section { background: var(--obsidian); }
+  .clients-intro {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px; line-height: 1.8;
+    color: #c0b8ac; font-weight: 400;
+    max-width: 640px; margin-bottom: 80px;
+  }
+  /* Wordmark wall — each builder treated as a typographic mark, not a button.
+     Hairline gold dividers in the gaps (the background bleeds through). */
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(184,149,106,0.14);  /* gap color = hairline divider */
+    border: 1px solid rgba(184,149,106,0.14);
+  }
   .client-item {
-    background: var(--slate); padding: 22px 26px;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1.5px;
-    color: #b0b8ac; text-transform: uppercase;
-    transition: all 0.25s ease; border-left: 2px solid transparent;
-    text-decoration: none; display: block;
+    background: var(--obsidian);
+    padding: 38px 22px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 132px;
+    transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
   }
-  .client-item:hover { color: var(--gold-light); border-left-color: var(--gold); background: var(--obsidian); }
+  .client-item:hover {
+    background: #18130f;  /* subtle warm lift */
+  }
+  /* The primary name — the brand mark */
+  .client-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.15;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+    transition: color 0.4s ease;
+    /* Reserve consistent space for the underline so cells don't shift */
+    padding-bottom: 6px;
+    position: relative;
+  }
+  .client-name::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .client-item:hover .client-name { color: var(--gold-light); }
+  .client-item:hover .client-name::after { width: 28px; }
+  /* The descriptor — category, quieter */
+  .client-descriptor {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-feature-settings: "lnum" 1;
+  }
+  /* Slightly tighter type on long primary names */
+  .client-name.long {
+    font-size: 16px;
+    letter-spacing: 0.01em;
+  }
+  /* "...and many more" footer row spans full width and reads as a quiet closing */
   .clients-more {
-    grid-column: 1 / -1; padding: 22px 26px; background: transparent;
-    border: 1px solid rgba(200,169,110,0.15);
-    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px;
-    color: rgba(200,169,110,0.5); text-align: center;
+    grid-column: 1 / -1;
+    padding: 28px 30px;
+    background: var(--obsidian);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(184,149,106,0.55);
+    text-align: center;
   }
 
-  /* CTA */
-  .cta-section { background: linear-gradient(160deg, var(--charcoal) 0%, #111614 100%); text-align: center; padding: 120px 40px; position: relative; overflow: hidden; }
-  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(200,169,110,0.06) 0%, transparent 70%); }
+  /* =========================== CTA =========================== */
+  .cta-section {
+    background: linear-gradient(180deg, var(--obsidian) 0%, #18130f 100%);
+    text-align: center; padding: 150px 40px;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,149,106,0.05) 0%, transparent 65%);
+  }
   .cta-section .section-inner { position: relative; z-index: 1; }
-  .cta-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 50px); font-weight: 300; line-height: 1.2; color: var(--white); margin-bottom: 20px; }
-  .cta-tagline em { font-style: italic; color: var(--gold-light); }
-  .cta-sub { font-size: 15px; color: var(--muted); font-weight: 300; margin-bottom: 50px; line-height: 1.7; max-width: 520px; margin-left: auto; margin-right: auto; }
-  .cta-divider { width: 1px; height: 60px; background: linear-gradient(var(--gold), transparent); margin: 0 auto 40px; }
-  .contact-block { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
+  .cta-tagline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 400; line-height: 1.2;
+    color: var(--white); margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+  .cta-tagline em { font-style: italic; font-weight: 500; color: var(--gold-light); }
+  .cta-sub {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px; color: var(--muted); font-weight: 400;
+    margin-bottom: 64px; line-height: 1.75;
+    max-width: 560px; margin-left: auto; margin-right: auto;
+  }
+  .cta-divider {
+    width: 1px; height: 80px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    margin: 0 auto 50px;
+  }
+  .contact-block {
+    display: flex; justify-content: center; gap: 96px; flex-wrap: wrap;
+  }
   .contact-item { text-align: center; }
-  .contact-label { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px; }
-  .contact-value { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--white); text-decoration: none; }
+  .contact-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .contact-value {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px; font-weight: 400; color: var(--white);
+    text-decoration: none; transition: color 0.3s ease;
+  }
   .contact-value:hover { color: var(--gold-light); }
 
-  /* FOOTER */
-  footer { background: var(--obsidian); border-top: 1px solid rgba(200,169,110,0.1); padding: 28px 40px; text-align: center; }
-  footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(138,144,136,0.5); }
-  footer span { color: rgba(200,169,110,0.4); }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    section { padding: 70px 24px; }
-    .about-grid, .showroom-grid { grid-template-columns: 1fr; gap: 0; }
-    .markets-grid { grid-template-columns: 1fr; }
-    .regions-row { flex-direction: column; }
-    .header-stats { gap: 36px; }
-    .contact-block { gap: 40px; }
-    .corner-ornament { width: 70px; height: 70px; }
-    .corner-ornament.tl { top: 16px; left: 16px; }
-    .corner-ornament.tr { top: 16px; right: 16px; }
-    .corner-ornament.bl { bottom: 16px; left: 16px; }
-    .corner-ornament.br { bottom: 16px; right: 16px; }
-    .showroom-copy { padding: 50px 30px; }
+  /* =========================== FOOTER =========================== */
+  footer {
+    background: var(--obsidian);
+    border-top: 1px solid rgba(184,149,106,0.1);
+    padding: 36px 40px; text-align: center;
   }
+  footer p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: rgba(138,130,120,0.6);
+  }
+  footer span { color: rgba(184,149,106,0.4); margin: 0 10px; }
+  footer a { color: rgba(184,149,106,0.5); text-decoration: none; letter-spacing: 2.5px; }
 
-  /* PHOTO GALLERY */
-  .gallery-section { background: var(--obsidian); padding: 0 0 100px 0; }
+  /* =========================== GALLERY =========================== */
+  .gallery-section { background: var(--obsidian); padding: 130px 0 130px 0; }
   .gallery-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 320px 320px;
-    gap: 3px;
+    grid-template-rows: 340px 340px;
+    gap: 1px;
+    background: rgba(184,149,106,0.1);
   }
-  .gallery-item { overflow: hidden; position: relative; }
+  .gallery-item { overflow: hidden; position: relative; background: var(--obsidian); }
   .gallery-item.wide { grid-column: span 2; }
   .gallery-item img {
     width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(0.92) saturate(0.95);
     display: block;
   }
   .gallery-item:hover img { transform: scale(1.04); }
   .gallery-caption {
     position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(13,15,14,0.85));
-    padding: 30px 24px 18px;
+    background: linear-gradient(transparent, rgba(20,17,14,0.88));
+    padding: 60px 28px 22px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(200,169,110,0.8);
-    opacity: 0; transition: opacity 0.3s ease;
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
-  .gallery-item:hover .gallery-caption { opacity: 1; }
+  .gallery-item:hover .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-  /* EXTERIOR SECTION */
-  .exterior-section { background: var(--charcoal); padding: 100px 40px; }
-  .exterior-wrap { max-width: 1100px; margin: 0 auto; }
-  .exterior-img-wrap { position: relative; overflow: hidden; margin-top: 8px; }
-  .exterior-img-wrap img { width: 100%; display: block; max-height: 560px; object-fit: cover; object-position: center 30%; }
+  /* =========================== EXTERIOR =========================== */
+  .exterior-section { background: var(--obsidian); padding: 130px 40px; }
+  .exterior-wrap { max-width: 1180px; margin: 0 auto; }
+  .exterior-img-wrap {
+    position: relative; overflow: hidden;
+    margin-top: 16px;
+    border: 1px solid rgba(184,149,106,0.12);
+  }
+  .exterior-img-wrap img {
+    width: 100%; display: block;
+    max-height: 600px; object-fit: cover;
+    object-position: center 30%;
+    filter: brightness(0.88) saturate(0.95);
+  }
   .exterior-overlay {
     position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(13,15,14,0.6));
-    padding: 60px 40px 30px;
+    background: linear-gradient(transparent, rgba(20,17,14,0.7));
+    padding: 80px 40px 36px;
   }
   .exterior-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
     color: var(--gold-light);
+  }
+
+  /* =========================== RESPONSIVE =========================== */
+  @media (max-width: 1080px) {
+    .clients-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    section { padding: 80px 24px; }
+    .about-grid, .showroom-grid { grid-template-columns: 1fr; gap: 0; }
+    .markets-grid { grid-template-columns: 1fr; }
+    .regions-row { flex-direction: column; }
+    .header-stats { gap: 50px; grid-template-columns: 1fr; }
+    .header-stats::before, .header-stats::after { display: none; }
+    .stat-number { font-size: 88px; }
+    .contact-block { gap: 48px; }
+    .showroom-copy { padding: 56px 30px; }
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 280px);
+    }
+    .gallery-item.wide { grid-column: span 1; }
+    h2 { font-size: 34px; }
+    .clients-grid { grid-template-columns: repeat(2, 1fr); }
+    .client-item { padding: 30px 18px; min-height: 110px; }
+    .client-name { font-size: 17px; }
   }
 
 </style>
 </head>
 <body>
 
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <!-- HERO -->
 <header>
   <div class="header-bg"></div>
-  <div class="grid-overlay"></div>
-  <div class="corner-ornament tl"></div>
-  <div class="corner-ornament tr"></div>
-  <div class="corner-ornament bl"></div>
-  <div class="corner-ornament br"></div>
 
   <div class="header-content">
+    <div class="hero-overline">Residential Flooring<span class="dot">·</span>Texas</div>
     <div class="logo-wrap">
-      <img src="images/high-tech-flooring-amp-design.png" alt="High Tech Flooring &amp; Design" loading="lazy">
+      <img src="images/high-tech-flooring-amp-design.png" alt="High Tech Flooring &amp; Design">
     </div>
-    <div class="est-line">Established 1993 &nbsp;·&nbsp; Austin, Texas</div>
-    <div class="logo-divider"><div class="logo-diamond"></div></div>
+    <div class="est-line">Established 1993<span class="dot">·</span>Austin, Texas</div>
     <div class="header-stats">
       <div class="stat">
         <span class="stat-number">30+</span>
@@ -491,7 +856,7 @@
 <section class="showroom-section">
   <div class="showroom-inner">
     <div class="section-tag">Our Design Center</div>
-    <h2>Where Vision Becomes <em>Reality</em></h2>
+    <h2>From Specification <em>Through Installation</em></h2>
     <div class="showroom-grid">
       <div class="showroom-photo">
         <img src="images/high-tech-flooring-design-center.jpg" alt="High Tech Flooring Design Center" loading="lazy">
@@ -536,7 +901,7 @@
 <section class="exterior-section">
   <div class="exterior-wrap">
     <div class="section-tag">Our Facility</div>
-    <h2>Built for <em>Scale &amp; Service</em></h2>
+    <h2>Built for <em>the Work</em></h2>
     <div class="exterior-img-wrap">
       <img src="images/high-tech-flooring-amp-design-headquarters-austin-texas.jpg" alt="High Tech Flooring &amp; Design Headquarters Austin Texas" loading="lazy">
       <div class="exterior-overlay">
@@ -553,32 +918,32 @@
     <h2>Trusted by Texas's <em>Best Builders</em></h2>
     <p class="clients-intro">High Tech Flooring &amp; Design is proud to serve an exceptional collection of Texas's most respected homebuilders and developers — relationships built on performance, trust, and a shared commitment to excellence.</p>
     <div class="clients-grid">
-      <a class="client-item" href="https://www.brookfieldresidential.com" target="_blank" rel="noopener">Brookfield Residential</a>
-      <a class="client-item" href="https://www.newmarkhomes.com" target="_blank" rel="noopener">Newmark Homes</a>
-      <a class="client-item" href="https://www.tollbrothers.com" target="_blank" rel="noopener">Toll Brothers Homes</a>
-      <a class="client-item" href="https://www.chesmarhomes.com" target="_blank" rel="noopener">Chesmar Homes</a>
-      <a class="client-item" href="https://www.davidweekley.com" target="_blank" rel="noopener">David Weekley Homes</a>
-      <a class="client-item" href="https://www.pulte.com" target="_blank" rel="noopener">Pulte Homes</a>
-      <a class="client-item" href="https://www.drhorton.com" target="_blank" rel="noopener">DR Horton Homes</a>
-      <a class="client-item" href="https://www.ahvcommunities.com" target="_blank" rel="noopener">AHV Communities</a>
-      <a class="client-item" href="https://www.pacesetterhomes.com" target="_blank" rel="noopener">Pacesetter Homes</a>
-      <a class="client-item" href="https://www.risewellhomes.com" target="_blank" rel="noopener">Risewell Homes</a>
-      <a class="client-item" href="https://www.ashtonwoods.com" target="_blank" rel="noopener">Ashton Woods</a>
-      <a class="client-item" href="https://www.mihomes.com" target="_blank" rel="noopener">M/I Homes</a>
-      <a class="client-item" href="https://www.sitterlehomes.com" target="_blank" rel="noopener">Sitterle Homes</a>
-      <a class="client-item" href="https://www.casadomaine.com" target="_blank" rel="noopener">Casadomaine Custom Homes</a>
-      <a class="client-item" href="https://www.evolutionaryhomes.com" target="_blank" rel="noopener">Evolutionary Homes</a>
-      <a class="client-item" href="https://www.viewhomes.com" target="_blank" rel="noopener">View Homes</a>
-      <a class="client-item" href="https://www.brohnhomes.com" target="_blank" rel="noopener">Brohn Homes</a>
-      <a class="client-item" href="https://www.sterlingcustomhomes.com" target="_blank" rel="noopener">Sterling Custom Homes</a>
-      <a class="client-item" href="https://www.legacydesigncs.com" target="_blank" rel="noopener">Legacy Design Construction</a>
-      <a class="client-item" href="https://www.flintco.com" target="_blank" rel="noopener">Flintco</a>
-      <a class="client-item" href="https://www.enterrahomes.com" target="_blank" rel="noopener">Enterra Homes</a>
-      <a class="client-item" href="https://www.silveradosignaturehomes.com" target="_blank" rel="noopener">Silverado Signature Homes</a>
-      <a class="client-item" href="https://www.oakmonthomes.com" target="_blank" rel="noopener">Oakmont Homes</a>
-      <a class="client-item" href="https://www.schwartzcustomhomes.com" target="_blank" rel="noopener">Schwartz Custom Homes</a>
-      <a class="client-item" href="https://www.maverickcustomhomes.com" target="_blank" rel="noopener">Maverick Custom Homes</a>
-      <div class="clients-more">...and many more valued partners across Texas</div>
+      <a class="client-item" href="https://www.brookfieldresidential.com" target="_blank" rel="noopener"><span class="client-name">Brookfield</span><span class="client-descriptor">Residential</span></a>
+      <a class="client-item" href="https://www.newmarkhomes.com" target="_blank" rel="noopener"><span class="client-name">Newmark</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.tollbrothers.com" target="_blank" rel="noopener"><span class="client-name">Toll Brothers</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.chesmarhomes.com" target="_blank" rel="noopener"><span class="client-name">Chesmar</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.davidweekley.com" target="_blank" rel="noopener"><span class="client-name">David Weekley</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.pulte.com" target="_blank" rel="noopener"><span class="client-name">Pulte</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.drhorton.com" target="_blank" rel="noopener"><span class="client-name">DR Horton</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.ahvcommunities.com" target="_blank" rel="noopener"><span class="client-name">AHV</span><span class="client-descriptor">Communities</span></a>
+      <a class="client-item" href="https://www.pacesetterhomes.com" target="_blank" rel="noopener"><span class="client-name">Pacesetter</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.risewellhomes.com" target="_blank" rel="noopener"><span class="client-name">Risewell</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.ashtonwoods.com" target="_blank" rel="noopener"><span class="client-name">Ashton</span><span class="client-descriptor">Woods</span></a>
+      <a class="client-item" href="https://www.mihomes.com" target="_blank" rel="noopener"><span class="client-name">M/I</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.sitterlehomes.com" target="_blank" rel="noopener"><span class="client-name">Sitterle</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.casadomaine.com" target="_blank" rel="noopener"><span class="client-name">Casadomaine</span><span class="client-descriptor">Custom Homes</span></a>
+      <a class="client-item" href="https://www.evolutionaryhomes.com" target="_blank" rel="noopener"><span class="client-name">Evolutionary</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.viewhomes.com" target="_blank" rel="noopener"><span class="client-name">View</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.brohnhomes.com" target="_blank" rel="noopener"><span class="client-name">Brohn</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.sterlingcustomhomes.com" target="_blank" rel="noopener"><span class="client-name">Sterling</span><span class="client-descriptor">Custom Homes</span></a>
+      <a class="client-item" href="https://www.legacydesigncs.com" target="_blank" rel="noopener"><span class="client-name long">Legacy Design</span><span class="client-descriptor">Construction</span></a>
+      <a class="client-item" href="https://www.flintco.com" target="_blank" rel="noopener"><span class="client-name">Flintco</span><span class="client-descriptor">General Contractor</span></a>
+      <a class="client-item" href="https://www.enterrahomes.com" target="_blank" rel="noopener"><span class="client-name">Enterra</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.silveradosignaturehomes.com" target="_blank" rel="noopener"><span class="client-name">Silverado</span><span class="client-descriptor">Signature Homes</span></a>
+      <a class="client-item" href="https://www.oakmonthomes.com" target="_blank" rel="noopener"><span class="client-name">Oakmont</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.schwartzcustomhomes.com" target="_blank" rel="noopener"><span class="client-name">Schwartz</span><span class="client-descriptor">Custom Homes</span></a>
+      <a class="client-item" href="https://www.maverickcustomhomes.com" target="_blank" rel="noopener"><span class="client-name">Maverick</span><span class="client-descriptor">Custom Homes</span></a>
+      <div class="clients-more">…and many more valued partners across Texas</div>
     </div>
   </div>
 </section>
@@ -586,8 +951,8 @@
 <!-- CTA -->
 <section class="cta-section">
   <div class="section-inner">
-    <div class="cta-tagline">Ready to Elevate Your Next<br><em>Project?</em></div>
-    <p class="cta-sub">Partner with a flooring company that has been setting the standard in Texas for over 30 years. Let's build something exceptional together.</p>
+    <div class="cta-tagline">Let's Build Your<br><em>Next Project Together</em></div>
+    <p class="cta-sub">Three decades of trade partnerships across Texas. Reach out to start a conversation.</p>
     <div class="cta-divider"></div>
     <div class="contact-block">
       <div class="contact-item">
@@ -615,5 +980,27 @@
   <p>© 2025 High Tech Flooring &amp; Design <span>·</span> Austin, Texas <span>·</span> Serving Texas Since 1993 <span>·</span> <a href="https://www.htflooringanddesign.com" target="_blank" rel="noopener" style="color:rgba(200,169,110,0.5);text-decoration:none;letter-spacing:3px;">htflooringanddesign.com</a></p>
 </footer>
 
+<script>
+  (function () {
+    var bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    var ticking = false;
+    function update() {
+      var doc = document.documentElement;
+      var scrollTop = window.scrollY || doc.scrollTop;
+      var max = (doc.scrollHeight - doc.clientHeight) || 1;
+      var pct = Math.min(100, Math.max(0, (scrollTop / max) * 100));
+      bar.style.width = pct + '%';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+    update();
+  })();
+</script>
 </body>
 </html>
