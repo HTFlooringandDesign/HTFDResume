@@ -6,17 +6,20 @@
 <meta name="description" content="High Tech Flooring & Design — Setting the standard for exceptional residential flooring in Texas since 1993. Serving Austin, Houston, and San Antonio.">
 <meta name="author" content="High Tech Flooring & Design">
 
+<!-- Preload critical above-the-fold asset -->
+<link rel="preload" as="image" href="images/high-tech-flooring-amp-design.png" fetchpriority="high">
+
 <!-- Open Graph / Social Sharing -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="High Tech Flooring & Design — Texas">
 <meta property="og:description" content="Setting the standard in residential flooring since 1993. Serving Austin, Houston & San Antonio.">
-<meta property="og:image" content="images/high-tech-flooring-amp-design-headquarters-austin-texas.jpg">
+<meta property="og:image" content="images/high-tech-flooring-amp-design-headquarters-austin-texas-1200w.jpg">
 <meta property="og:url" content="https://www.htflooringanddesign.com/">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="High Tech Flooring & Design — Texas">
 <meta name="twitter:description" content="Setting the standard in residential flooring since 1993.">
-<meta name="twitter:image" content="images/high-tech-flooring-amp-design-headquarters-austin-texas.jpg">
+<meta name="twitter:image" content="images/high-tech-flooring-amp-design-headquarters-austin-texas-1200w.jpg">
 
 <!-- Favicon (uses the logo PNG; recommend replacing with a proper favicon.ico later) -->
 <link rel="icon" type="image/png" href="images/high-tech-flooring-amp-design.png">
@@ -38,10 +41,10 @@
     /* Richer, more saturated bronze-gold */
     --gold: #b8956a;
     --gold-light: #d4b78a;
-    --gold-deep: #8a6f4f;
+    --gold-deep: #967a5d;
     --cream: #f0eae0;
     --white: #faf7f2;
-    --muted: #8a8278;
+    --muted: #a8a098;
   }
   html { scroll-behavior: smooth; }
   body {
@@ -65,6 +68,61 @@
     z-index: 9999;
     transition: width 0.05s linear;
     pointer-events: none;
+  }
+
+  /* Visually hidden but available to screen readers — for headings that
+     don't need to be displayed but should still be in the document tree
+     for proper semantic structure. */
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Skip link — visually hidden until focused, then jumps to main content.
+     Critical for keyboard and screen-reader users to bypass repetitive
+     header content on every visit. */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    background: var(--gold-light);
+    color: var(--obsidian);
+    padding: 12px 20px;
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 10000;
+    transition: top 0.2s ease;
+    border-radius: 2px;
+  }
+  .skip-link:focus {
+    top: 16px;
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  /* Universal focus-visible styles — visible keyboard navigation indicator.
+     :focus-visible only matches keyboard focus (not mouse clicks), so
+     mouse users don't see outlines, but keyboard users always do. */
+  *:focus { outline: none; }
+  *:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  /* Custom focus treatment for the wordmark wall links — outline-offset
+     would clip against the hairline grid borders, so use an inset box-shadow */
+  .client-item:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--gold-light);
   }
 
   /* Display elements that need crisp lining figures override the body default */
@@ -215,9 +273,9 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
     font-weight: 400;
-    font-size: 17px;
+    font-size: 18px;
     letter-spacing: 6px;
-    color: rgba(184,149,106,0.55);
+    color: rgba(212,183,138,0.8);
     font-feature-settings: "lnum" 1;
     z-index: 2;
     white-space: nowrap;
@@ -238,7 +296,7 @@
     transform: translateX(-50%);
     width: 220px;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(184,149,106,0.35) 30%, rgba(184,149,106,0.35) 70%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(184,149,106,0.5) 30%, rgba(184,149,106,0.5) 70%, transparent 100%);
     z-index: 1;
     pointer-events: none;
   }
@@ -257,20 +315,20 @@
 
   .section-tag {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-light);
     margin-bottom: 28px;
     display: flex; align-items: center; gap: 18px;
-    font-weight: 400;
+    font-weight: 500;
   }
   .section-tag::after {
     content: '';
     flex: 0 0 48px;
     height: 1px;
     background: var(--gold);
-    opacity: 0.4;
+    opacity: 0.6;
   }
 
   h2 {
@@ -287,25 +345,95 @@
   /* =========================== ABOUT =========================== */
   .about-section { background: var(--obsidian); }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+
+  /* Hairline below the headline — punctuates the transition from display
+     type to body type. A small editorial flourish. */
+  .about-text h2 {
+    position: relative;
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+  }
+  .about-text h2::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 48px; height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+
   .about-text p {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 17px; line-height: 1.75;
     color: #c8c0b4;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
     font-weight: 400;
   }
-  .about-text p strong { color: var(--gold-light); font-weight: 500; font-style: italic; }
-  .pillars { display: flex; flex-direction: column; gap: 36px; padding-top: 12px; }
-  .pillar { border-left: 1px solid var(--gold); padding: 4px 0 4px 28px; position: relative; }
+  /* Body italics get the muted deep-gold tone — visibly distinct from the
+     bright gold of the headline italic. Reserves the bright accent for
+     the single display element so the eye knows where to anchor. */
+  .about-text p strong {
+    color: var(--gold-deep);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  /* PILLARS — re-treated as editorial vignettes, not list items.
+     Each gets a Roman numeral counter and a horizontal opener mark
+     instead of a vertical bullet line. */
+  .pillars {
+    display: flex; flex-direction: column;
+    gap: 40px;
+    padding-top: 12px;
+    counter-reset: pillar-num;
+    max-width: 480px;  /* constrain line length on the right column */
+  }
+  .pillar {
+    counter-increment: pillar-num;
+    position: relative;
+    padding-left: 0;
+  }
+  /* The horizontal opener mark above each pillar title */
+  .pillar::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 16px;
+  }
   .pillar-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 10px; font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  /* Roman numeral preceding each pillar title — small, italic, gold */
+  .pillar-title::before {
+    content: counter(pillar-num, lower-roman);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--gold);
+    opacity: 0.7;
+    min-width: 22px;
+    font-feature-settings: "lnum" 1;
   }
   .pillar p {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 15px; line-height: 1.7;
     color: var(--muted); font-weight: 400;
+    max-width: 460px;
   }
 
   /* =========================== MARKETS =========================== */
@@ -371,9 +499,10 @@
   }
   .region-year {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
-    color: rgba(184,149,106,0.5);
-    margin-top: 18px; display: block; position: relative; z-index: 1;
+    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: rgba(212,183,138,0.85);
+    margin-top: 20px; display: block; position: relative; z-index: 1;
+    font-weight: 500;
   }
 
   /* =========================== SHOWROOM =========================== */
@@ -502,8 +631,8 @@
     background: var(--obsidian);
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
-    font-size: 16px;
-    color: rgba(184,149,106,0.55);
+    font-size: 17px;
+    color: rgba(212,183,138,0.85);
     text-align: center;
   }
 
@@ -528,9 +657,9 @@
   .cta-tagline em { font-style: italic; font-weight: 500; color: var(--gold-light); }
   .cta-sub {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 17px; color: var(--muted); font-weight: 400;
+    font-size: 18px; color: #c8c0b4; font-weight: 400;
     margin-bottom: 64px; line-height: 1.75;
-    max-width: 560px; margin-left: auto; margin-right: auto;
+    max-width: 580px; margin-left: auto; margin-right: auto;
   }
   .cta-divider {
     width: 1px; height: 80px;
@@ -543,9 +672,9 @@
   .contact-item { text-align: center; }
   .contact-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--gold); display: block; margin-bottom: 12px;
-    font-weight: 500;
+    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold-light); display: block; margin-bottom: 14px;
+    font-weight: 600;
   }
   .contact-value {
     font-family: 'Playfair Display', Georgia, serif;
@@ -562,11 +691,13 @@
   }
   footer p {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
-    color: rgba(138,130,120,0.6);
+    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: rgba(168,160,152,0.9);
+    font-weight: 500;
   }
-  footer span { color: rgba(184,149,106,0.4); margin: 0 10px; }
-  footer a { color: rgba(184,149,106,0.5); text-decoration: none; letter-spacing: 2.5px; }
+  footer span { color: rgba(212,183,138,0.7); margin: 0 10px; }
+  footer a { color: rgba(212,183,138,0.85); text-decoration: none; letter-spacing: 2.5px; }
+  footer a:hover { color: var(--gold-light); }
 
   /* =========================== GALLERY =========================== */
   .gallery-section { background: var(--obsidian); padding: 130px 0 130px 0; }
@@ -591,8 +722,9 @@
     background: linear-gradient(transparent, rgba(20,17,14,0.88));
     padding: 60px 28px 22px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
     color: var(--gold-light);
+    font-weight: 500;
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -623,52 +755,221 @@
   }
   .exterior-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
     color: var(--gold-light);
+    font-weight: 500;
   }
 
   /* =========================== RESPONSIVE =========================== */
+
+  /* Small desktop / large tablet landscape — minor adjustments */
   @media (max-width: 1080px) {
     .clients-grid { grid-template-columns: repeat(3, 1fr); }
+    .about-grid { gap: 64px; }
   }
-  @media (max-width: 768px) {
-    section { padding: 80px 24px; }
-    .about-grid, .showroom-grid { grid-template-columns: 1fr; gap: 0; }
-    .markets-grid { grid-template-columns: 1fr; }
-    .regions-row { flex-direction: column; }
-    .header-stats { gap: 50px; grid-template-columns: 1fr; }
-    .header-stats::before, .header-stats::after { display: none; }
+
+  /* Tablet portrait & landscape — preserve horizontal hero, drop multi-column areas */
+  @media (max-width: 900px) {
+    section { padding: 100px 32px; }
+    .header-content { max-width: 90%; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .pillars { max-width: 100%; }
+    .markets-grid { grid-template-columns: repeat(2, 1fr); }
+    .showroom-grid { grid-template-columns: 1fr; }
+    .showroom-photo { min-height: 360px; }
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 280px 280px 280px;
+    }
+    .gallery-item.wide { grid-column: span 2; }
+    h2 { font-size: 40px; }
+    .clients-grid { grid-template-columns: repeat(3, 1fr); }
+    .stat-number { font-size: clamp(64px, 14vw, 100px); }
+    .stat-label { font-size: 13px; }
+    .header-stats::before { left: 33.333%; }
+    .header-stats::after { left: 66.666%; }
+  }
+
+  /* True mobile — single column, generous padding, larger touch targets */
+  @media (max-width: 640px) {
+    section { padding: 72px 22px; }
+
+    /* HERO */
+    header { padding: 60px 24px; }
+    .hero-overline {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .hero-overline::before,
+    .hero-overline::after { width: 20px; }
+    .logo-wrap { margin-bottom: 40px; }
+    .logo-wrap img { height: 64px; }
+    .est-line {
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      margin-bottom: 56px;
+    }
+    .est-line .dot { margin: 0 10px; }
+    .header-stats {
+      gap: 48px;
+      grid-template-columns: 1fr;
+    }
+    .header-stats::before,
+    .header-stats::after { display: none; }
     .stat-number { font-size: 88px; }
-    .contact-block { gap: 48px; }
-    .showroom-copy { padding: 56px 30px; }
+    .stat-label {
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      margin-top: 18px;
+    }
+
+    /* SECTION DIVIDERS — pull tighter on mobile */
+    section:not(.cta-section):not(.gallery-section):not(.showroom-section)::before,
+    .showroom-section::before,
+    .gallery-section::before {
+      font-size: 15px;
+      letter-spacing: 4px;
+      top: 36px;
+    }
+    section:not(.cta-section):not(.gallery-section):not(.showroom-section)::after,
+    .showroom-section::after,
+    .gallery-section::after {
+      top: 43px;
+      width: 160px;
+    }
+
+    /* SECTION HEADINGS */
+    .section-tag { font-size: 12px; letter-spacing: 2.5px; gap: 14px; margin-bottom: 22px; }
+    .section-tag::after { flex: 0 0 32px; }
+    h2 { font-size: clamp(28px, 8vw, 36px); margin-bottom: 30px; line-height: 1.2; }
+
+    /* ABOUT */
+    .about-grid { grid-template-columns: 1fr; gap: 56px; }
+    .about-text h2 { padding-bottom: 28px; margin-bottom: 28px; }
+    .about-text p { font-size: 16px; line-height: 1.7; }
+    .pillars { gap: 32px; padding-top: 0; }
+    .pillar-title { font-size: 13px; gap: 10px; }
+    .pillar-title::before { font-size: 14px; min-width: 18px; }
+    .pillar p { font-size: 14px; max-width: 100%; }
+
+    /* MARKETS */
+    .markets-grid { grid-template-columns: 1fr; }
+    .market-card { padding: 40px 32px; }
+    .market-title { font-size: 20px; }
+    .market-desc { font-size: 14px; }
+
+    /* REGIONS */
+    .regions-row { flex-direction: column; }
+    .region-card { padding: 56px 32px; }
+    .region-card .region-num { font-size: 100px; top: -6px; }
+    .region-name { font-size: 24px; }
+
+    /* SHOWROOM */
+    .showroom-section .showroom-inner { padding: 80px 22px; }
+    .showroom-grid { grid-template-columns: 1fr; }
+    .showroom-photo { min-height: 280px; }
+    .showroom-copy { padding: 44px 28px; }
+    .showroom-copy p { font-size: 15px; }
+
+    /* GALLERY — single column on mobile, smaller heights */
+    .gallery-section { padding: 100px 0 100px 0; }
     .gallery-grid {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(4, 280px);
+      grid-template-rows: repeat(4, 240px);
     }
     .gallery-item.wide { grid-column: span 1; }
-    h2 { font-size: 34px; }
+    /* Touch devices have no hover — show captions persistently */
+    .gallery-caption {
+      opacity: 1;
+      transform: translateY(0);
+      padding: 50px 24px 18px;
+      font-size: 11px;
+    }
+
+    /* EXTERIOR */
+    .exterior-section { padding: 80px 22px; }
+    .exterior-img-wrap img { max-height: 320px; }
+    .exterior-overlay { padding: 60px 24px 22px; }
+
+    /* CLIENTS / WORDMARK WALL */
+    .clients-section .clients-intro { font-size: 16px; margin-bottom: 48px; }
     .clients-grid { grid-template-columns: repeat(2, 1fr); }
-    .client-item { padding: 30px 18px; min-height: 110px; }
-    .client-name { font-size: 17px; }
+    .client-item { padding: 24px 14px; min-height: 100px; }
+    .client-name { font-size: 16px; margin-bottom: 8px; }
+    .client-name.long { font-size: 14px; }
+    .client-descriptor { font-size: 9px; letter-spacing: 2px; }
+    .clients-more { font-size: 15px; padding: 22px 16px; }
+
+    /* CTA */
+    .cta-section { padding: 100px 22px; }
+    .cta-tagline { font-size: clamp(28px, 9vw, 38px); margin-bottom: 22px; }
+    .cta-sub { font-size: 16px; margin-bottom: 48px; }
+    .cta-divider { height: 60px; margin-bottom: 40px; }
+    .contact-block {
+      flex-direction: column;
+      gap: 36px;
+    }
+    .contact-label { font-size: 11px; margin-bottom: 8px; }
+    .contact-value { font-size: 18px; }
+
+    /* FOOTER */
+    footer { padding: 28px 22px; }
+    footer p { font-size: 10px; letter-spacing: 2px; line-height: 1.8; }
+    footer span { margin: 0 6px; }
+  }
+
+  /* Smallest viewports — drop overline hairlines so the text fits on one line */
+  @media (max-width: 400px) {
+    .hero-overline::before,
+    .hero-overline::after { display: none; }
+    .hero-overline { gap: 6px; }
+  }
+
+  /* Touch-target compliance & reduced motion */
+  @media (hover: none) and (pointer: coarse) {
+    /* Ensure interactive elements meet 44x44px touch target minimum */
+    .client-item { min-height: 110px; }
+    a, button { min-height: 44px; }
+    /* Show gallery captions persistently on touch */
+    .gallery-caption { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
 </style>
 </head>
 <body>
 
+<!-- Skip to main content link — screen reader / keyboard accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- Scroll progress bar -->
-<div class="scroll-progress" id="scrollProgress"></div>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<main id="main-content">
 
 <!-- HERO -->
 <header>
   <div class="header-bg"></div>
 
   <div class="header-content">
-    <div class="hero-overline">Residential Flooring<span class="dot">·</span>Texas</div>
+    <div class="hero-overline">Residential Flooring<span class="dot" aria-hidden="true">·</span>Texas</div>
     <div class="logo-wrap">
-      <img src="images/high-tech-flooring-amp-design.png" alt="High Tech Flooring &amp; Design">
+      <img src="images/high-tech-flooring-amp-design.png"
+           alt="High Tech Flooring &amp; Design"
+           width="1228" height="324"
+           fetchpriority="high" decoding="async">
     </div>
-    <div class="est-line">Established 1993<span class="dot">·</span>Austin, Texas</div>
+    <div class="est-line">Established 1993<span class="dot" aria-hidden="true">·</span>Austin, Texas</div>
     <div class="header-stats">
       <div class="stat">
         <span class="stat-number">30+</span>
@@ -687,12 +988,12 @@
 </header>
 
 <!-- ABOUT -->
-<section class="about-section">
+<section class="about-section" aria-labelledby="about-heading">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-text">
         <div class="section-tag">Who We Are</div>
-        <h2>Three Decades of<br><em>Craftsmanship &amp; Trust</em></h2>
+        <h2 id="about-heading">Three Decades of<br><em>Craftsmanship &amp; Trust</em></h2>
         <p>Founded in <strong>Austin, Texas in 1993</strong>, High Tech Flooring &amp; Design has grown from a local flooring specialist into one of the most trusted full-service flooring partners in the Texas market.</p>
         <p>Over three decades, we have cultivated deep relationships with the state's most respected homebuilders and commercial developers — built on a foundation of <strong>quality, reliability, and design expertise</strong> that our partners have come to depend on.</p>
         <p>From the design center to the final installation, our team delivers a <strong>seamless, white-glove experience</strong> that protects our builder partners' timelines, budgets, and reputations.</p>
@@ -720,10 +1021,10 @@
 </section>
 
 <!-- MARKETS SERVED -->
-<section class="markets-section">
+<section class="markets-section" aria-labelledby="markets-heading">
   <div class="section-inner">
     <div class="section-tag">Our Expertise</div>
-    <h2>Markets We <em>Serve</em></h2>
+    <h2 id="markets-heading">Markets We <em>Serve</em></h2>
     <div class="markets-grid">
       <div class="market-card">
         <div class="market-icon">
@@ -825,10 +1126,10 @@
 </section>
 
 <!-- REGIONAL PRESENCE -->
-<section class="regions-section">
+<section class="regions-section" aria-labelledby="regions-heading">
   <div class="section-inner">
     <div class="section-tag">Where We Operate</div>
-    <h2>Texas-Wide <em>Reach</em></h2>
+    <h2 id="regions-heading">Texas-Wide <em>Reach</em></h2>
     <div class="regions-row">
       <div class="region-card">
         <span class="region-num">01</span>
@@ -853,13 +1154,27 @@
 </section>
 
 <!-- DESIGN CENTER / SHOWROOM -->
-<section class="showroom-section">
+<section class="showroom-section" aria-labelledby="showroom-heading">
   <div class="showroom-inner">
     <div class="section-tag">Our Design Center</div>
-    <h2>From Specification <em>Through Installation</em></h2>
+    <h2 id="showroom-heading">From Specification <em>Through Installation</em></h2>
     <div class="showroom-grid">
       <div class="showroom-photo">
-        <img src="images/high-tech-flooring-design-center.jpg" alt="High Tech Flooring Design Center" loading="lazy">
+        <picture>
+          <source type="image/webp"
+                  srcset="images/high-tech-flooring-design-center-400w.webp 400w,
+                          images/high-tech-flooring-design-center-800w.webp 800w,
+                          images/high-tech-flooring-design-center-1200w.webp 1200w"
+                  sizes="(max-width: 900px) 100vw, 50vw">
+          <img src="images/high-tech-flooring-design-center-800w.jpg"
+               srcset="images/high-tech-flooring-design-center-400w.jpg 400w,
+                       images/high-tech-flooring-design-center-800w.jpg 800w,
+                       images/high-tech-flooring-design-center-1200w.jpg 1200w"
+               sizes="(max-width: 900px) 100vw, 50vw"
+               alt="Interior of the High Tech Flooring &amp; Design center showroom, with curated flooring samples on display"
+               width="1200" height="800"
+               loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="showroom-copy">
         <p>Our <strong>state-of-the-art design center</strong> is where builder partners and their homebuyers go from overwhelmed to inspired. Curated to showcase the finest flooring available — from wide-plank hardwoods and imported tile to luxury vinyl and premium carpet — every product on display has been hand-selected for quality, value, and enduring style.</p>
@@ -876,34 +1191,101 @@
 </section>
 
 <!-- PHOTO GALLERY -->
-<section class="gallery-section">
+<section class="gallery-section" aria-labelledby="gallery-heading">
+  <h2 id="gallery-heading" class="visually-hidden">Photo Gallery — Our Design Center</h2>
   <div class="gallery-grid">
     <div class="gallery-item wide">
-      <img src="images/high-tech-flooring-lobby.jpg" alt="High Tech Flooring Lobby" loading="lazy">
+      <picture>
+        <source type="image/webp"
+                srcset="images/high-tech-flooring-lobby-400w.webp 400w,
+                        images/high-tech-flooring-lobby-800w.webp 800w,
+                        images/high-tech-flooring-lobby-1200w.webp 1200w"
+                sizes="(max-width: 640px) 100vw, (max-width: 900px) 100vw, 66vw">
+        <img src="images/high-tech-flooring-lobby-800w.jpg"
+             srcset="images/high-tech-flooring-lobby-400w.jpg 400w,
+                     images/high-tech-flooring-lobby-800w.jpg 800w,
+                     images/high-tech-flooring-lobby-1200w.jpg 1200w"
+             sizes="(max-width: 640px) 100vw, (max-width: 900px) 100vw, 66vw"
+             alt="Reception and lobby area of High Tech Flooring &amp; Design, featuring wood floors and modern lighting"
+             width="1200" height="800"
+             loading="lazy" decoding="async">
+      </picture>
       <div class="gallery-caption">Reception &amp; Lobby</div>
     </div>
     <div class="gallery-item">
-      <img src="images/high-tech-flooring-boardroom.jpg" alt="High Tech Flooring Boardroom" loading="lazy">
+      <picture>
+        <source type="image/webp"
+                srcset="images/high-tech-flooring-boardroom-400w.webp 400w,
+                        images/high-tech-flooring-boardroom-800w.webp 800w"
+                sizes="(max-width: 640px) 100vw, 33vw">
+        <img src="images/high-tech-flooring-boardroom-400w.jpg"
+             srcset="images/high-tech-flooring-boardroom-400w.jpg 400w,
+                     images/high-tech-flooring-boardroom-800w.jpg 800w"
+             sizes="(max-width: 640px) 100vw, 33vw"
+             alt="Executive boardroom with marble conference table and brass chandeliers"
+             width="800" height="533"
+             loading="lazy" decoding="async">
+      </picture>
       <div class="gallery-caption">Boardroom</div>
     </div>
     <div class="gallery-item">
-      <img src="images/high-tech-flooring-design-center.jpg" alt="Design Center Floor" loading="lazy">
+      <picture>
+        <source type="image/webp"
+                srcset="images/high-tech-flooring-design-center-400w.webp 400w,
+                        images/high-tech-flooring-design-center-800w.webp 800w"
+                sizes="(max-width: 640px) 100vw, 33vw">
+        <img src="images/high-tech-flooring-design-center-400w.jpg"
+             srcset="images/high-tech-flooring-design-center-400w.jpg 400w,
+                     images/high-tech-flooring-design-center-800w.jpg 800w"
+             sizes="(max-width: 640px) 100vw, 33vw"
+             alt="Design center floor view with sample displays and consultation seating"
+             width="800" height="533"
+             loading="lazy" decoding="async">
+      </picture>
       <div class="gallery-caption">Design Center</div>
     </div>
     <div class="gallery-item wide">
-      <img src="images/high-tech-flooring-lobby.jpg" alt="Design Center Lobby" loading="lazy">
+      <picture>
+        <source type="image/webp"
+                srcset="images/high-tech-flooring-lobby-400w.webp 400w,
+                        images/high-tech-flooring-lobby-800w.webp 800w,
+                        images/high-tech-flooring-lobby-1200w.webp 1200w"
+                sizes="(max-width: 640px) 100vw, (max-width: 900px) 100vw, 66vw">
+        <img src="images/high-tech-flooring-lobby-800w.jpg"
+             srcset="images/high-tech-flooring-lobby-400w.jpg 400w,
+                     images/high-tech-flooring-lobby-800w.jpg 800w,
+                     images/high-tech-flooring-lobby-1200w.jpg 1200w"
+             sizes="(max-width: 640px) 100vw, (max-width: 900px) 100vw, 66vw"
+             alt="Entrance to the design center, viewed from the main lobby"
+             width="1200" height="800"
+             loading="lazy" decoding="async">
+      </picture>
       <div class="gallery-caption">Design Center Entrance</div>
     </div>
   </div>
 </section>
 
 <!-- EXTERIOR / FACILITY -->
-<section class="exterior-section">
+<section class="exterior-section" aria-labelledby="exterior-heading">
   <div class="exterior-wrap">
     <div class="section-tag">Our Facility</div>
-    <h2>Built for <em>the Work</em></h2>
+    <h2 id="exterior-heading">Built for <em>the Work</em></h2>
     <div class="exterior-img-wrap">
-      <img src="images/high-tech-flooring-amp-design-headquarters-austin-texas.jpg" alt="High Tech Flooring &amp; Design Headquarters Austin Texas" loading="lazy">
+      <picture>
+        <source type="image/webp"
+                srcset="images/high-tech-flooring-amp-design-headquarters-austin-texas-400w.webp 400w,
+                        images/high-tech-flooring-amp-design-headquarters-austin-texas-800w.webp 800w,
+                        images/high-tech-flooring-amp-design-headquarters-austin-texas-1200w.webp 1200w"
+                sizes="100vw">
+        <img src="images/high-tech-flooring-amp-design-headquarters-austin-texas-1200w.jpg"
+             srcset="images/high-tech-flooring-amp-design-headquarters-austin-texas-400w.jpg 400w,
+                     images/high-tech-flooring-amp-design-headquarters-austin-texas-800w.jpg 800w,
+                     images/high-tech-flooring-amp-design-headquarters-austin-texas-1200w.jpg 1200w"
+             sizes="100vw"
+             alt="Exterior view of High Tech Flooring &amp; Design headquarters in Austin, Texas"
+             width="1200" height="675"
+             loading="lazy" decoding="async">
+      </picture>
       <div class="exterior-overlay">
         <div class="exterior-label">High Tech Flooring &amp; Design — Austin, Texas Headquarters</div>
       </div>
@@ -912,46 +1294,46 @@
 </section>
 
 <!-- CLIENTS -->
-<section class="clients-section">
+<section class="clients-section" aria-labelledby="clients-heading">
   <div class="section-inner">
     <div class="section-tag">Our Partners</div>
-    <h2>Trusted by Texas's <em>Best Builders</em></h2>
+    <h2 id="clients-heading">Trusted by Texas's <em>Best Builders</em></h2>
     <p class="clients-intro">High Tech Flooring &amp; Design is proud to serve an exceptional collection of Texas's most respected homebuilders and developers — relationships built on performance, trust, and a shared commitment to excellence.</p>
     <div class="clients-grid">
-      <a class="client-item" href="https://www.brookfieldresidential.com" target="_blank" rel="noopener"><span class="client-name">Brookfield</span><span class="client-descriptor">Residential</span></a>
-      <a class="client-item" href="https://www.newmarkhomes.com" target="_blank" rel="noopener"><span class="client-name">Newmark</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.tollbrothers.com" target="_blank" rel="noopener"><span class="client-name">Toll Brothers</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.chesmarhomes.com" target="_blank" rel="noopener"><span class="client-name">Chesmar</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.davidweekley.com" target="_blank" rel="noopener"><span class="client-name">David Weekley</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.pulte.com" target="_blank" rel="noopener"><span class="client-name">Pulte</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.drhorton.com" target="_blank" rel="noopener"><span class="client-name">DR Horton</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.ahvcommunities.com" target="_blank" rel="noopener"><span class="client-name">AHV</span><span class="client-descriptor">Communities</span></a>
-      <a class="client-item" href="https://www.pacesetterhomes.com" target="_blank" rel="noopener"><span class="client-name">Pacesetter</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.risewellhomes.com" target="_blank" rel="noopener"><span class="client-name">Risewell</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.ashtonwoods.com" target="_blank" rel="noopener"><span class="client-name">Ashton</span><span class="client-descriptor">Woods</span></a>
-      <a class="client-item" href="https://www.mihomes.com" target="_blank" rel="noopener"><span class="client-name">M/I</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.sitterlehomes.com" target="_blank" rel="noopener"><span class="client-name">Sitterle</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.casadomaine.com" target="_blank" rel="noopener"><span class="client-name">Casadomaine</span><span class="client-descriptor">Custom Homes</span></a>
-      <a class="client-item" href="https://www.evolutionaryhomes.com" target="_blank" rel="noopener"><span class="client-name">Evolutionary</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.viewhomes.com" target="_blank" rel="noopener"><span class="client-name">View</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.brohnhomes.com" target="_blank" rel="noopener"><span class="client-name">Brohn</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.sterlingcustomhomes.com" target="_blank" rel="noopener"><span class="client-name">Sterling</span><span class="client-descriptor">Custom Homes</span></a>
-      <a class="client-item" href="https://www.legacydesigncs.com" target="_blank" rel="noopener"><span class="client-name long">Legacy Design</span><span class="client-descriptor">Construction</span></a>
-      <a class="client-item" href="https://www.flintco.com" target="_blank" rel="noopener"><span class="client-name">Flintco</span><span class="client-descriptor">General Contractor</span></a>
-      <a class="client-item" href="https://www.enterrahomes.com" target="_blank" rel="noopener"><span class="client-name">Enterra</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.silveradosignaturehomes.com" target="_blank" rel="noopener"><span class="client-name">Silverado</span><span class="client-descriptor">Signature Homes</span></a>
-      <a class="client-item" href="https://www.oakmonthomes.com" target="_blank" rel="noopener"><span class="client-name">Oakmont</span><span class="client-descriptor">Homes</span></a>
-      <a class="client-item" href="https://www.schwartzcustomhomes.com" target="_blank" rel="noopener"><span class="client-name">Schwartz</span><span class="client-descriptor">Custom Homes</span></a>
-      <a class="client-item" href="https://www.maverickcustomhomes.com" target="_blank" rel="noopener"><span class="client-name">Maverick</span><span class="client-descriptor">Custom Homes</span></a>
+      <a class="client-item" href="https://www.brookfieldresidential.com" target="_blank" rel="noopener" aria-label="Brookfield Residential — opens in new tab"><span class="client-name">Brookfield</span><span class="client-descriptor">Residential</span></a>
+      <a class="client-item" href="https://www.newmarkhomes.com" target="_blank" rel="noopener" aria-label="Newmark Homes — opens in new tab"><span class="client-name">Newmark</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.tollbrothers.com" target="_blank" rel="noopener" aria-label="Toll Brothers Homes — opens in new tab"><span class="client-name">Toll Brothers</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.chesmarhomes.com" target="_blank" rel="noopener" aria-label="Chesmar Homes — opens in new tab"><span class="client-name">Chesmar</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.davidweekley.com" target="_blank" rel="noopener" aria-label="David Weekley Homes — opens in new tab"><span class="client-name">David Weekley</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.pulte.com" target="_blank" rel="noopener" aria-label="Pulte Homes — opens in new tab"><span class="client-name">Pulte</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.drhorton.com" target="_blank" rel="noopener" aria-label="DR Horton Homes — opens in new tab"><span class="client-name">DR Horton</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.ahvcommunities.com" target="_blank" rel="noopener" aria-label="AHV Communities — opens in new tab"><span class="client-name">AHV</span><span class="client-descriptor">Communities</span></a>
+      <a class="client-item" href="https://www.pacesetterhomes.com" target="_blank" rel="noopener" aria-label="Pacesetter Homes — opens in new tab"><span class="client-name">Pacesetter</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.risewellhomes.com" target="_blank" rel="noopener" aria-label="Risewell Homes — opens in new tab"><span class="client-name">Risewell</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.ashtonwoods.com" target="_blank" rel="noopener" aria-label="Ashton Woods — opens in new tab"><span class="client-name">Ashton</span><span class="client-descriptor">Woods</span></a>
+      <a class="client-item" href="https://www.mihomes.com" target="_blank" rel="noopener" aria-label="M/I Homes — opens in new tab"><span class="client-name">M/I</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.sitterlehomes.com" target="_blank" rel="noopener" aria-label="Sitterle Homes — opens in new tab"><span class="client-name">Sitterle</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.casadomaine.com" target="_blank" rel="noopener" aria-label="Casadomaine Custom Homes — opens in new tab"><span class="client-name">Casadomaine</span><span class="client-descriptor">Custom Homes</span></a>
+      <a class="client-item" href="https://www.evolutionaryhomes.com" target="_blank" rel="noopener" aria-label="Evolutionary Homes — opens in new tab"><span class="client-name">Evolutionary</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.viewhomes.com" target="_blank" rel="noopener" aria-label="View Homes — opens in new tab"><span class="client-name">View</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.brohnhomes.com" target="_blank" rel="noopener" aria-label="Brohn Homes — opens in new tab"><span class="client-name">Brohn</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.sterlingcustomhomes.com" target="_blank" rel="noopener" aria-label="Sterling Custom Homes — opens in new tab"><span class="client-name">Sterling</span><span class="client-descriptor">Custom Homes</span></a>
+      <a class="client-item" href="https://www.legacydesigncs.com" target="_blank" rel="noopener" aria-label="Legacy Design Construction — opens in new tab"><span class="client-name long">Legacy Design</span><span class="client-descriptor">Construction</span></a>
+      <a class="client-item" href="https://www.flintco.com" target="_blank" rel="noopener" aria-label="Flintco General Contractor — opens in new tab"><span class="client-name">Flintco</span><span class="client-descriptor">General Contractor</span></a>
+      <a class="client-item" href="https://www.enterrahomes.com" target="_blank" rel="noopener" aria-label="Enterra Homes — opens in new tab"><span class="client-name">Enterra</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.silveradosignaturehomes.com" target="_blank" rel="noopener" aria-label="Silverado Signature Homes — opens in new tab"><span class="client-name">Silverado</span><span class="client-descriptor">Signature Homes</span></a>
+      <a class="client-item" href="https://www.oakmonthomes.com" target="_blank" rel="noopener" aria-label="Oakmont Homes — opens in new tab"><span class="client-name">Oakmont</span><span class="client-descriptor">Homes</span></a>
+      <a class="client-item" href="https://www.schwartzcustomhomes.com" target="_blank" rel="noopener" aria-label="Schwartz Custom Homes — opens in new tab"><span class="client-name">Schwartz</span><span class="client-descriptor">Custom Homes</span></a>
+      <a class="client-item" href="https://www.maverickcustomhomes.com" target="_blank" rel="noopener" aria-label="Maverick Custom Homes — opens in new tab"><span class="client-name">Maverick</span><span class="client-descriptor">Custom Homes</span></a>
       <div class="clients-more">…and many more valued partners across Texas</div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
+<section class="cta-section" aria-labelledby="cta-heading">
   <div class="section-inner">
-    <div class="cta-tagline">Let's Build Your<br><em>Next Project Together</em></div>
+    <h2 id="cta-heading" class="cta-tagline">Let's Build Your<br><em>Next Project Together</em></h2>
     <p class="cta-sub">Three decades of trade partnerships across Texas. Reach out to start a conversation.</p>
     <div class="cta-divider"></div>
     <div class="contact-block">
@@ -975,9 +1357,11 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 High Tech Flooring &amp; Design <span>·</span> Austin, Texas <span>·</span> Serving Texas Since 1993 <span>·</span> <a href="https://www.htflooringanddesign.com" target="_blank" rel="noopener" style="color:rgba(200,169,110,0.5);text-decoration:none;letter-spacing:3px;">htflooringanddesign.com</a></p>
+  <p>© 2025 High Tech Flooring &amp; Design <span aria-hidden="true">·</span> Austin, Texas <span aria-hidden="true">·</span> Serving Texas Since 1993 <span aria-hidden="true">·</span> <a href="https://www.htflooringanddesign.com" target="_blank" rel="noopener">htflooringanddesign.com</a></p>
 </footer>
 
 <script>
